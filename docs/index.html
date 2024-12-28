@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CSCI 1052: Randomized Algorithms for Data Science – Deep Learning</title>
+<title>CSCI 1051: Deep Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -86,7 +86,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -104,11 +104,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://middlebury.instructure.com/courses/13944"> 
+    <a class="nav-link" href="https://middlebury.instructure.com/courses/16004"> 
 <span class="menu-text">Canvas</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://www.gradescope.com/courses/709735"> 
+    <a class="nav-link" href="https://www.gradescope.com/courses/934368"> 
 <span class="menu-text">Gradescope</span></a>
   </li>  
   <li class="nav-item">
@@ -134,21 +134,21 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><strong>CSCI 1052: Randomized Algorithms for Data Science</strong></h1>
+<h1 class="title"><strong>CSCI 1051: Deep Learning</strong></h1>
 </div>
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page">
 
     
   
@@ -161,160 +161,304 @@ ul.task-list li input[type="checkbox"] {
 
 
 <center>
-An introduction to algorithms for efficiently finding patterns in large-scale data.
+Deep learning from theoretical foundations to state-of-the-art applications.
 </center>
 <p><br></p>
 <div class="row">
-<div class="col-md-6" data-markdown="1">
+<div class="col" data-markdown="1">
 <p><strong>Instructor</strong>: <a href="https://www.rtealwitter.com/">R. Teal Witter</a>. Please call me Teal.</p>
-<p><strong>Class Times</strong>: We meet Monday, Tuesday, Wednesday, and Thursday in 75 Shannon St Room 202. The lecture is from 10am to noon and the discussion is from 2 to 3pm.</p>
+<p><strong>Class Times</strong>: We meet Monday, Tuesday, Wednesday, and Thursday in 75 Shannon St Room 202. The lecture is from 10am to noon and the discussion is from 2 to 4pm.</p>
 <p><strong>Office Hours</strong>: I will hold office hours in 75 Shannon St Room 221 from 3 to 4pm.</p>
-<p><strong>Participation</strong>: I expect you to engage in class, ask questions, and make connections. So that I can get a sense of how you’re doing, please fill out <a href="https://forms.gle/XNaiZFexa1JGJtTs5">this</a> form once per lecture. (You will receive one point per lecture if you answer the form.)</p>
-<p><strong>Discussion</strong>: Please post all your course related questions on <a href="https://middlebury.instructure.com/courses/13944">Canvas</a>. If your question reveals your solution to a homework problem, please email me instead.</p>
+<p><strong>Participation</strong>: I expect you to engage in class, ask questions, and make connections. So that I can get a sense of how you’re doing, please fill out <a href="https://forms.gle/92hyvcHtCw4m62DWA">this</a> form once per lecture. (You will receive one point per lecture if you answer the form.)</p>
+<p><strong>Discussion</strong>: Please post all your course related questions on <a href="https://middlebury.instructure.com/courses/16004">Canvas</a>. If your question reveals your solution to a homework problem, please email me instead.</p>
 </div>
-<div class="col-md-6" data-markdown="1">
+<div class="col" data-markdown="1">
 <p><strong>Assignments</strong>: You will receive one problem per class. I expect you to solve the problem with your group during the discussion (I’ll be there to answer questions). Once you have solved the problem, you should write up your solution on your own. In addition, there will be a project on a lecture topic of your choice.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Assignment</th>
-<th style="text-align: left;">Work Due</th>
-<th style="text-align: left;">Self-grade Due</th>
+<table style="width: 100%; border-collapse: collapse;">
+<tbody><tr>
+<td>
+Assignment
+</td>
+<td>
+Work Due
+</td>
+<td>
+Self-grade Due
+</td>
 </tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><a href="psets/pset1.pdf">Problem Set 1</a></td>
-<td style="text-align: left;">Friday 1/12</td>
-<td style="text-align: left;">Monday 1/15</td>
+<tr>
+<td>
+Problem Set 1
+</td>
+<td>
+Friday 1/10
+</td>
+<td>
+Monday 1/13
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="psets/pset2.pdf">Problem Set 2</a></td>
-<td style="text-align: left;">Friday 1/19</td>
-<td style="text-align: left;">Monday 1/22</td>
+<tr>
+<td>
+Problem Set 2
+</td>
+<td>
+Friday 1/17
+</td>
+<td>
+Monday 1/20
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="psets/pset3.pdf">Problem Set 3</a></td>
-<td style="text-align: left;">Friday 1/26</td>
-<td style="text-align: left;">Monday 1/29</td>
+<tr>
+<td>
+Problem Set 3
+</td>
+<td>
+Friday 1/24
+</td>
+<td>
+Monday 1/27
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="psets/pset4.pdf">Problem Set 4</a></td>
-<td style="text-align: left;">Friday 2/2</td>
-<td style="text-align: left;">Monday 2/5</td>
+<tr>
+<td>
+Project Proposal
+</td>
+<td>
+Monday 1/20
+</td>
+<td>
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><a href="project/proposal.pdf">Project Proposal</a></td>
-<td style="text-align: left;">Monday 1/22</td>
-<td style="text-align: left;"></td>
+<tr>
+<td>
+Project
+</td>
+<td>
+Friday 1/31
+</td>
+<td>
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><a href="project/project.pdf">Project</a></td>
-<td style="text-align: left;">Friday 2/2</td>
-<td style="text-align: left;"></td>
-</tr>
-</tbody>
-</table>
+</tbody></table>
 </div>
 </div>
-<p><strong>Resources</strong>: This class uses material from Chris Musco’s phenomenal graduate Algorithmic Machine Learning and Data Science <a href="https://www.chrismusco.com/amlds2023/">course</a> at NYU Tandon. For each class, I will post my typed notes and the handwritten slides we use in class.</p>
-
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Class</th>
-<th style="text-align: left;">Topic</th>
-<th style="text-align: left;">Notes</th>
-<th style="text-align: left;">Slides </th>
+<p><strong>Resources</strong>: This class is loosely based on Chinmay Hegde’s phenomenal graduate Deep Learning <a href="https://chinmayhegde.github.io/dl-notes/">course</a> at NYU Tandon. For each class, I will post my handwritten slides.</p>
+<table style="width: 100%; border-collapse: collapse;">
+<tbody><tr>
+<td>
+Class
+</td>
+<td>
+Topic
+</td>
+<td>
+Slides
+</td>
+<td>
+Resources
+</td>
 </tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Thursday 1/4</td>
-<td style="text-align: left;">Set Size Estimation</td>
-<td style="text-align: left;"><a href="notes/01_set_size.html">Notes</a></td>
-<td style="text-align: left;"><a href="lectures/lecture01.pdf">Slides</a></td>
+<tr class="section-header">
+<td colspan="4">
+The Three-Step Framework
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">Monday 1/8</td>
-<td style="text-align: left;">Frequent Items</td>
-<td style="text-align: left;"><a href="notes/02_frequent_items.html">Notes</a></td>
-<td style="text-align: left;"><a href="lectures/lecture02.pdf">Slides</a></td>
+<tr>
+<td>
+Monday 1/6
+</td>
+<td>
+Linear Regression and Mean Squared Error
+</td>
+<td>
+</td>
+<td>
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Tuesday 1/9</td>
-<td style="text-align: left;">Distinct Elements</td>
-<td style="text-align: left;"><a href="notes/03_distinct_elements.html">Notes</a></td>
-<td style="text-align: left;"><a href="lectures/lecture03.pdf">Slides</a></td>
+<tr>
+<td>
+Tuesday 1/7
+</td>
+<td>
+Logistic Regression and Cross Entropy Loss
+</td>
+<td>
+</td>
+<td>
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">Wednesday 1/10</td>
-<td style="text-align: left;">Load Balancing</td>
-<td style="text-align: left;"><a href="notes/04_load_balancing.html">Notes</a></td>
-<td style="text-align: left;"><a href="lectures/lecture04.pdf">Slides</a></td>
+<tr>
+<td>
+Wednesday 1/8
+</td>
+<td>
+Gradient Descent and Neural Networks
+</td>
+<td>
+</td>
+<td>
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Thursday 1/11</td>
-<td style="text-align: left;">Concentration Inequalities</td>
-<td style="text-align: left;"><a href="notes/05_concentration_inequalities.html">Notes</a></td>
-<td style="text-align: left;"><a href="lectures/lecture05.pdf">Slides</a></td>
+<tr>
+<td>
+Thursday 1/9
+</td>
+<td>
+Back-propagation and Optimization
+</td>
+<td>
+</td>
+<td>
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">Tuesday 1/16</td>
-<td style="text-align: left;">High-Dimensional Geometry</td>
-<td style="text-align: left;"><a href="notes/06_high_dimensional_geometry.html">Notes</a></td>
-<td style="text-align: left;"><a href="lectures/lecture06.pdf">Slides</a></td>
+<tr class="section-header">
+<td colspan="4">
+Language Generation
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Wednesday 1/17</td>
-<td style="text-align: left;">Dimensionality Reduction</td>
-<td style="text-align: left;"><a href="notes/07_dimensionality_reduction.html">Notes</a></td>
-<td style="text-align: left;"><a href="lectures/lecture07.pdf">Slides</a></td>
+<tr>
+<td>
+Monday 1/13
+</td>
+<td>
+Language Embeddings and Contrastive Loss
+</td>
+<td>
+</td>
+<td>
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">Thursday 1/18</td>
-<td style="text-align: left;">Similarity Estimation</td>
-<td style="text-align: left;"><a href="notes/08_similarity_estimation.html">Notes</a></td>
-<td style="text-align: left;"><a href="lectures/lecture08.pdf">Slides</a></td>
+<tr>
+<td>
+Tuesday 1/14
+</td>
+<td>
+Transformers and Positional Encoding
+</td>
+<td>
+</td>
+<td>
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Monday 1/22</td>
-<td style="text-align: left;">Singular Value Decomposition</td>
-<td style="text-align: left;"><a href="notes/14_singular_value_decomposition.html">Notes</a></td>
-<td style="text-align: left;"><a href="lectures/lecture09.pdf">Slides</a></td>
+<tr>
+<td>
+Wednesday 1/15
+</td>
+<td>
+Large Language Models
+</td>
+<td>
+</td>
+<td>
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">Tuesday 1/23</td>
-<td style="text-align: left;">Power Method</td>
-<td style="text-align: left;"><a href="notes/15_power_method.html">Notes</a></td>
-<td style="text-align: left;"><a href="lectures/lecture10.pdf">Slides</a></td>
+<tr>
+<td>
+Thursday 1/16
+</td>
+<td>
+Finetuning
+</td>
+<td>
+</td>
+<td>
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Wednesday 1/24</td>
-<td style="text-align: left;">Spectral Graph Theory</td>
-<td style="text-align: left;"><a href="notes/16_spectral_graph_theory.html">Notes</a></td>
-<td style="text-align: left;"><a href="lectures/lecture11.pdf">Slides</a></td>
+<tr class="section-header">
+<td colspan="4">
+Image Generation
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">Thursday 1/25</td>
-<td style="text-align: left;">Sketched Regression</td>
-<td style="text-align: left;"><a href="notes/17_sketched_regression.html">Notes</a></td>
-<td style="text-align: left;"><a href="lectures/lecture12.pdf">Slides</a></td>
+<tr>
+<td>
+Tuesday 1/21
+</td>
+<td>
+Convolutional Neural Networks and Image Embeddings
+</td>
+<td>
+</td>
+<td>
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">Monday 1/29</td>
-<td style="text-align: left;">Fast JL Transform</td>
-<td style="text-align: left;"><a href="notes/18_fast_jl_transform.html">Notes</a></td>
-<td style="text-align: left;"><a href="lectures/lecture13.pdf">Slides</a></td>
+<tr>
+<td>
+Wednesday 1/22
+</td>
+<td>
+Diffusion
+</td>
+<td>
+</td>
+<td>
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">Tuesday 1/30</td>
-<td style="text-align: left;">Sparse Recovery</td>
-<td style="text-align: left;"><a href="notes/19_sparse_recovery.html">Notes</a></td>
-<td style="text-align: left;"><a href="lectures/lecture14.pdf">Slides</a></td>
+<tr>
+<td>
+Thursday 1/23
+</td>
+<td>
+Schrödinger Bridges
+</td>
+<td>
+</td>
+<td>
+</td>
 </tr>
-</tbody>
-</table>
+<tr class="section-header">
+<td colspan="4">
+AI Safety
+</td>
+</tr>
+<tr>
+<td>
+Monday 1/27
+</td>
+<td>
+Interpretability
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+Tuesday 1/28
+</td>
+<td>
+Watermarking
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+Wednesday 1/29
+</td>
+<td>
+Project Preparation
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+Thursday 1/30
+</td>
+<td>
+Project Presentations
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+</tbody></table>
 
 
 

@@ -9,9 +9,9 @@ format:
     css: styles.css
     toc: false
     include-in-header: header.html
+    page-layout: full
 
 website:
-  title: "Deep Learning" 
   favicon: favicon.ico
   navbar:    
     css: styles.css
@@ -19,9 +19,9 @@ website:
     search: false
     left:
       - text: "Canvas"
-        href: https://middlebury.instructure.com/courses/13944
+        href: https://middlebury.instructure.com/courses/16004
       - text: "Gradescope"
-        href: https://www.gradescope.com/courses/709735
+        href: https://www.gradescope.com/courses/934368
       - text: "Syllabus"
         href: syllabus.html
       - text: "Prior Years"

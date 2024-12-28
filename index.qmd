@@ -1,61 +1,178 @@
 ---
-title: "**CSCI 1052: Randomized Algorithms for Data Science**"
+title: "**CSCI 1051: Deep Learning**"
 output:
   html_document:
     css: styles.css
 ---
 
 <center>
-An introduction to algorithms for efficiently finding patterns in large-scale data.
+Deep learning from theoretical foundations to state-of-the-art applications.
 </center>
 
 <br>
 
 <div class="row">
-  <div class="col-md-6" markdown="1">
+  <div class="col" markdown="1">
   **Instructor**: [R. Teal Witter](https://www.rtealwitter.com/). Please call me Teal.
   
-  **Class Times**: We meet Monday, Tuesday, Wednesday, and Thursday in 75 Shannon St Room 202. The lecture is from 10am to noon and the discussion is from 2 to 3pm.
+  **Class Times**: We meet Monday, Tuesday, Wednesday, and Thursday in 75 Shannon St Room 202. The lecture is from 10am to noon and the discussion is from 2 to 4pm.
   
   **Office Hours**: I will hold office hours in 75 Shannon St Room 221 from 3 to 4pm.
   
-  **Participation**: I expect you to engage in class, ask questions, and make connections. So that I can get a sense of how you're doing, please fill out [this](https://forms.gle/XNaiZFexa1JGJtTs5) form once per lecture. (You will receive one point per lecture if you answer the form.)
+  **Participation**: I expect you to engage in class, ask questions, and make connections. So that I can get a sense of how you're doing, please fill out [this](https://forms.gle/92hyvcHtCw4m62DWA) form once per lecture. (You will receive one point per lecture if you answer the form.)
   
-  **Discussion**: Please post all your course related questions on [Canvas](https://middlebury.instructure.com/courses/13944). If your question reveals your solution to a homework problem, please email me instead.
+  **Discussion**: Please post all your course related questions on [Canvas](https://middlebury.instructure.com/courses/16004). If your question reveals your solution to a homework problem, please email me instead.
   
   </div>
-  <div class="col-md-6" markdown="1">
+  <div class="col" markdown="1">
   **Assignments**: You will receive one problem per class. I expect you to solve the problem with your group during the discussion (I'll be there to answer questions). Once you have solved the problem, you should write up your solution on your own. In addition, there will be a project on a lecture topic of your choice.
   
-  Assignment | Work Due | Self-grade Due
-  :--- | :--- | :---
-  [Problem Set 1](psets/pset1.pdf)  | Friday 1/12 | Monday 1/15
-  [Problem Set 2](psets/pset2.pdf)  | Friday 1/19 | Monday 1/22
-  [Problem Set 3](psets/pset3.pdf)  | Friday 1/26 | Monday 1/29
-  [Problem Set 4](psets/pset4.pdf)  | Friday 2/2 | Monday 2/5
-  [Project Proposal](project/proposal.pdf) | Monday 1/22 |
-  [Project](project/project.pdf) | Friday 2/2 |
+  <table style="width: 100%; border-collapse: collapse;">
+  <tr>
+    <td>Assignment</td>
+    <td>Work Due</td>
+    <td>Self-grade Due</td>
+  </tr>
+  <tr>
+    <td>Problem Set 1</td>
+    <td>Friday 1/10</td>
+    <td>Monday 1/13</td>
+  </tr>
+  <tr>
+    <td>Problem Set 2</td>
+    <td>Friday 1/17</td>
+    <td>Monday 1/20</td>
+  </tr>
+  <tr>
+    <td>Problem Set 3</td>
+    <td>Friday 1/24</td>
+    <td>Monday 1/27</td>
+  </tr>
+  <tr>
+    <td>Project Proposal</td>
+    <td>Monday 1/20</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Project</td>
+    <td>Friday 1/31</td>
+    <td></td>
+  </tr>
+</table>
+
   </div>
 </div>
 
-**Resources**: This class uses material from Chris Musco's phenomenal graduate Algorithmic Machine Learning and Data Science [course](https://www.chrismusco.com/amlds2023/) at NYU Tandon. For each class, I will post my typed notes and the handwritten slides we use in class.
+**Resources**: This class is loosely based on Chinmay Hegde's phenomenal graduate Deep Learning [course](https://chinmayhegde.github.io/dl-notes/) at NYU Tandon. For each class, I will post my handwritten slides.
 
-<tr>
-Class | Topic | Notes | Slides </tr><tr>
-:--- | :--- | :--- | :--- |
-Thursday 1/4   | Set Size Estimation | [Notes](notes/01_set_size.html) | [Slides](lectures/lecture01.pdf)  | </tr><tr>
-Monday 1/8     | Frequent Items | [Notes](notes/02_frequent_items.html) | [Slides](lectures/lecture02.pdf) | </tr><tr>
-Tuesday 1/9    | Distinct Elements| [Notes](notes/03_distinct_elements.html) | [Slides](lectures/lecture03.pdf) | </tr><tr>
-Wednesday 1/10 | Load Balancing | [Notes](notes/04_load_balancing.html) | [Slides](lectures/lecture04.pdf) | </tr><tr>
-Thursday 1/11  | Concentration Inequalities | [Notes](notes/05_concentration_inequalities.html) | [Slides](lectures/lecture05.pdf) | </tr><tr>
-Tuesday 1/16   | High-Dimensional Geometry | [Notes](notes/06_high_dimensional_geometry.html) | [Slides](lectures/lecture06.pdf) | </tr><tr>
-Wednesday 1/17 | Dimensionality Reduction | [Notes](notes/07_dimensionality_reduction.html) | [Slides](lectures/lecture07.pdf) | </tr><tr>
-Thursday 1/18  | Similarity Estimation | [Notes](notes/08_similarity_estimation.html) | [Slides](lectures/lecture08.pdf) | </tr><tr>
-Monday 1/22    | Singular Value Decomposition | [Notes](notes/14_singular_value_decomposition.html) | [Slides](lectures/lecture09.pdf) | </tr><tr>
-Tuesday 1/23   | Power Method | [Notes](notes/15_power_method.html) | [Slides](lectures/lecture10.pdf) | </tr><tr>
-Wednesday 1/24 | Spectral Graph Theory | [Notes](notes/16_spectral_graph_theory.html) | [Slides](lectures/lecture11.pdf) | </tr><tr>
-Thursday 1/25  | Sketched Regression | [Notes](notes/17_sketched_regression.html) | [Slides](lectures/lecture12.pdf) | </tr><tr>
-Monday 1/29    | Fast JL Transform | [Notes](notes/18_fast_jl_transform.html) | [Slides](lectures/lecture13.pdf) | </tr><tr>
-Tuesday 1/30   | Sparse Recovery | [Notes](notes/19_sparse_recovery.html) | [Slides](lectures/lecture14.pdf) | </tr><tr>
-
+<table style="width: 100%; border-collapse: collapse;">
+  <tr>
+    <td>Class</td>
+    <td>Topic</td>
+    <td>Slides</td>
+    <td>Resources</td>
+  </tr>
+  <tr class="section-header">
+    <td colspan="4" >The Three-Step Framework</td>
+  </tr>
+  <tr>
+    <td>Monday 1/6</td>
+    <td>Linear Regression and Mean Squared Error</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Tuesday 1/7</td>
+    <td>Logistic Regression and Cross Entropy Loss</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Wednesday 1/8</td>
+    <td>Gradient Descent and Neural Networks</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Thursday 1/9</td>
+    <td>Back-propagation and Optimization</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr class="section-header">
+    <td colspan="4">Language Generation</td>
+  </tr>
+  <tr>
+    <td>Monday 1/13</td>
+    <td>Language Embeddings and Contrastive Loss</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Tuesday 1/14</td>
+    <td>Transformers and Positional Encoding</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Wednesday 1/15</td>
+    <td>Large Language Models</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Thursday 1/16</td>
+    <td>Finetuning</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr class="section-header">
+    <td colspan="4" >Image Generation</td>
+  </tr>
+  <tr>
+    <td>Tuesday 1/21</td>
+    <td>Convolutional Neural Networks and Image Embeddings</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Wednesday 1/22</td>
+    <td>Diffusion</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Thursday 1/23</td>
+    <td>Schrödinger Bridges</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr class="section-header">
+    <td colspan="4" >AI Safety</td>
+  </tr>
+  <tr>
+    <td>Monday 1/27</td>
+    <td>Interpretability</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Tuesday 1/28</td>
+    <td>Watermarking</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Wednesday 1/29</td>
+    <td>Project Preparation</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Thursday 1/30</td>
+    <td>Project Presentations</td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
 
