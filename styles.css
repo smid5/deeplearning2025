@@ -1,0 +1,22 @@
+.navbar {
+  background-color: #008080;
+}
+
+.navbar .navbar-brand, .nav-link {
+  color: #FFFFFF;
+}
+
+table, th, td {
+  border: 2px solid;
+  border-color: #DDDDDD;
+} 
+
+tr:nth-child(even), th {
+  background-color: #E5F2F2;
+}
+
+h1 {
+  text-align: center;
+}
+
+  

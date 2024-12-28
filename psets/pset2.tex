@@ -1,0 +1,204 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{amsmath, amsfonts}
+\usepackage{hyperref, graphicx}
+
+
+\title{CSCI 1052 Problem Set 2}
+\author{} % TODO: Put your name here
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\subsection*{Submission Instructions}
+
+Please upload your solutions by
+\textbf{5pm Friday January 19, 2024.}
+\begin{itemize}
+\item You are encouraged to discuss ideas
+and work with your classmates. However, you
+\textbf{must acknowledge} your collaborators
+at the top of each solution on which
+you collaborated with others 
+and you \textbf{must write} your solutions and code
+independently.
+\item Your solutions to theory questions must
+be typeset in LaTeX or markdown.
+I strongly recommend uploading the source LaTeX (found 
+\href{https://www.rtealwitter.com/rads2024/psets/pset2.tex}{here})
+to Overleaf for editing.
+\item I recommend that you write your solutions to coding question in a Jupyter notebook using Google Colab.
+\item You should submit your solutions as a \textbf{single PDF} via the assignment on Gradescope. You can enroll in the class using the code GPXX7N.
+\item Once you uploaded your solution, \textbf{mark where you answered each part of each question}.
+\end{itemize}
+
+\newpage
+
+\section*{Problem 1: Normal Distribution from Darts}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics{graphics/dartboard.jpeg}
+	\caption{A dartboard. Intuitively, the likelihood that a dart hits a particular point should only depend on the distance to the center and rotating the dartboard shouldn't change where darts likely land.}
+\end{figure}
+
+In this problem, we will derive the density function of the normal distribution from the example of a dartboard.
+Let $f: \mathbb{R}^d \to [0,1]$ be a probability density function that describes the probability a dart lands at the point $(x,y)$.
+We want our probability density function $f$ to have two properties:
+\begin{enumerate}
+    \item \textbf{Radial symmetry:} The probability that a dart lands at a point depends only on the distance between the point and the origin.
+    \item \textbf{Independence:} Coordinates are independent e.g., knowing the $x$-coordinate does not give us information about the $y$-coordinate.
+\end{enumerate}
+
+From the radial symmetry property, we can conclude that
+\begin{align}\label{eq:radial_symmetry}
+f(x,y) = f(r) = f(\sqrt{x^2 + y^2})
+\end{align}
+where $r=\sqrt{x^2+y^2}$ is the distance between the origin and $(x,y)$.
+
+From the independence property, we can conclude that $f(x,y) = g(x) h(y)$ for some functions $g$ and $h$.
+Further, the radial symmetry property tells us that $f(x,y) = f(y,x) = g(y) h(x)$ so $g$ and $h$ must be the same function.
+That is,
+\begin{align}\label{eq:independence}
+f(x,y) = g(x) g(y).
+\end{align}
+
+\subsection*{Part 1 (.5 points)} 
+
+Up to rescaling, we can assume that $g(0)=1$.
+Use this fact and plug in the point $(r,0)$ to conclude that $f$ and $g$ are the same function.
+
+\subsection*{Part 2 (.5 points)}
+
+Define the function $h(x) = f(\sqrt{x})$.
+In particular,
+\begin{align}\label{eq:define_h}
+f(\sqrt{x^2 + y^2}) = f(x) f(y) \Leftrightarrow
+h(x^2 + y^2) = h(x^2) h(y^2).
+\end{align}
+Use this property to show that
+\begin{align}\label{eq:h_linear}
+h(x_1 + x_2 + \ldots + x_n) = h(x_1) h(x_2) \cdot \ldots \cdot h(x_n).
+\end{align}
+Then prove that $h(n) = h(1)^n$.
+
+Without loss of generality, let $h(1) = b$.
+
+\subsection*{Part 3 (1 point)}
+
+Let $p$ and $q$ be any integers.
+Prove that 
+\begin{align}\label{eq:to_prove}
+h\left(\frac{p}{q}\right) = b^{\frac{p}{q}}.
+\end{align}
+
+\textbf{Hint:} Consider the expression
+\begin{align*}
+h\left(\frac{p}{q} \cdot q \right).
+\end{align*}
+
+As long as $h$ is continuous, conclude that $h(x) = b^x$ for any real number since the rational numbers are dense in the real number line.
+
+\subsection*{Part 4 (1 point)}
+
+You have shown that $h(x) = b^x$. Further, $h(x) = e^{cx}$ for some real number $c$.
+Then $f(x) = h(x^2) = e^{c x^2}$.
+Recall this implies the density function of $x$ and $y$ is $f(x,y) = f(x) f(y) = e^{c (x^2 + y^2)}$.
+
+For $f$ to be a valid probability density function, what constraint do we have on $c$?
+If we wanted to make the distribution more concentrated, how should we change $c$?
+
+Except for the normalization, we have explained every part of the multivariate normal distribution given below
+\begin{align*}
+f(x,y) = \frac1{\sigma^2 \cdot 2 \pi} \exp\left(-\frac{x^2 + y^2}{2\sigma^2}\right).
+\end{align*}
+Why is there a normalization?
+
+%\input{solutions/solution2_1.tex}
+
+\newpage
+
+\section*{Problem 2: Johnson-Lindenstrauss for Join Size Estimations}
+
+In class, we showed the Johnson-Lindenstrauss Lemma for preserving the norm of differences.
+Consider vectors $\mathbf{x}_1, \ldots, \mathbf{x}_n \in \mathbb{R}^d$.
+Let $k = O\left( \frac{\log n}{\epsilon^2} \right)$.
+We showed that a random matrix $\mathbf{\Pi} \in \mathbb{R}^{k \times d}$ satisfies
+\begin{align}
+(1-\epsilon) \| \mathbf{x}_i - \mathbf{x}_j \|_2^2
+\leq \| \mathbf{\Pi x}_i - \mathbf{\Pi x}_j \|_2^2
+\leq (1+\epsilon) \| \mathbf{x}_i - \mathbf{x}_j \|_2^2
+\end{align}
+with probability 9/10.
+
+\subsection*{Part 1 (2 points)}
+Show that we can use the Johnson-Lindenstrauss Lemma as stated above to show that inner-products are also preserved.
+In particular, under the same conditions as above,
+\begin{align}
+|
+\langle \mathbf{x}_i, \mathbf{x}_j \rangle
+- \langle \mathbf{\Pi x}_i, \mathbf{\Pi x}_j \rangle
+|
+\leq \frac12 \epsilon (\|\mathbf{x}_i\|_2^2 + \|\mathbf{x}_j\|_2^2)
+\end{align}
+with probability 9/10.
+
+\paragraph{Hint 1:} Show that $\| \mathbf{x}_i - \mathbf{x}_j \|_2^2 = \| \mathbf{x}_i \|_2^2 - 2 \langle \mathbf{x}_i, \mathbf{x}_j \rangle + \| \mathbf{x}_j \|_2^2$.
+
+\paragraph{Hint 2:} Apply the Johnson-Lindenstrauss Lemma and Hint 1 to the term $\| \mathbf{\Pi x}_i + \mathbf{\Pi x}_j \|_2^2 - \| \mathbf{\Pi x}_i - \mathbf{\Pi x}_j \|_2^2$.
+
+\subsection*{Part 2 (1 point)}
+One powerful application of sketching is in database applications. For example, a common goal is to estimate the \emph{inner join size} of two tables without performing an actual inner join (which is expensive, as it requires enumerating the keys of the tables).
+Formally, consider two sets of unique keys $X = \{x_1, \ldots, x_m\}$ and $Y = \{y_1, \ldots, y_n\}$ which are subsets of $1,2, \ldots, U$. 
+Our goal is to estimate $|X\cap Y|$ based on small space compressions of $X$ and $Y$.  
+
+Using your result from Part 1, describe a method based on inner product estimation that constructs independent sketches of $X$ and $Y$ of size  $k = O\left(\frac{\log n}{\epsilon^2}\right)$ and from these sketches can return an estimate $Z$ for $|X\cap Y|$ satisfying
+\begin{align*}
+	\left|Z - |X\cap Y|\right| \leq \epsilon (|X|+|Y|)
+\end{align*}
+with probability $9/10$.
+
+%\input{solutions/solution2_2.tex}
+
+\newpage
+
+\section*{Problem 3: LSH in the Wild}
+
+To support its largely visual platform, Pinterest runs a massive image de-duplication operation built on Locality Sensitive Hashing for Cosine Similarity. You can read about the actual system \href{https://medium.com/pinterest-engineering/detecting-image-similarity-using-spark-lsh-and-tensorflow-618636afc939}{here}.
+All information and numbers below are otherwise purely hypothetical.
+
+Pinterest has a database of $N = $ \textbf{1 billion} images. Each image in the database is pre-processed and represented as a vector $\mathbf{q}\in \mathbb{R}^d$. When a new image is pinned, it is also processed to form a vector $\mathbf{y} \in \mathbb{R}^d$ and checked for any existing duplicates or near-duplicates to $\mathbf{y}$ in the database. 
+
+\subsection*{Part 1}
+Write the probability that a vector $\mathbf{y}$ is checked as a function of the cosine similarity $\cos( \theta(\mathbf{q}, \mathbf{y}))$.
+As the number of tables $t$ increases, how does the probability change?
+As the number of bands $r$ increases, how does the probability change?
+
+\subsection*{Part 2}
+
+Pinterest has two simultaneous goals:
+\begin{enumerate}
+    \item If an image $\mathbf{y}$ has $\cos( \theta(\mathbf{q}, \mathbf{y})) =.98$, we want to check the image with probability $\geq 99\%$.
+    \item We want the total number of checks we make to be less than a constant $C$ to be specified later.
+\end{enumerate}
+
+Given these goals, your job is to design a multi-table LSH scheme to find candidate near-duplicates, which can then be checked directly against $\mathbf{q}$.
+To support this task, Pinterest has collected data on the empirical distribution of $\cos(\theta(\mathbf{q},\mathbf{y}))$ for a typical new image $\mathbf{q}$.
+It roughly follows a bell-curve:
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=.6\textwidth]{graphics/dist.png}
+\end{figure} 
+
+Based on the data above, describe how to set parameters for your LSH scheme to minimize the space (i.e., number of tables) used when achieving the above goals for $C=1,000,000$ and $C=200,000$.
+Justify your answers, and any assumptions you make.
+
+If you code anything up to help calculate your answer, please attach the code. As in class, you can assume that each hash table has $m = O(N)$ slots and this is large enough to ignore lower order terms depending on $1/m$. 
+
+%\input{solutions/solution2_3}
+
+\end{document}

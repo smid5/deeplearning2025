@@ -1,0 +1,48 @@
+---
+title: "**Syllabus**"
+output:
+  html_document:
+    css: styles.css
+---
+
+**Course Description:** In this class, we will discover how data science techniques are deployed at scale. The questions we investigate will include: How do services such as Shazam recognize song clips in seconds? In settings with hundreds of features, how do we find patterns? Given a social network, how can we detect groups? And how can we use vibrations to "see" into the earth? We'll answer these questions and more by exploring how randomization lets us get away with far fewer resources than we'd otherwise need. Topics include random variables, concentration inequalities, dimensionality reduction, singular value decomposition, spectral graph theory, and approximate linear regression.
+
+**Prerequisites:** I will assume familiarity with linear algebra and algorithms. We will write some code in python and I expect you to be familiar with it.
+
+**Structure:** We will meet on Monday, Tuesday, Wednesday, and Thursday at 75 Shannon in Room 202. The lecture is from 10am to 12pm and the discussion is from 2 to 3pm. I will hold my office hours directly after the discussion.
+
+**Resources**: This class uses material from Chris Musco's phenomenal graduate Algorithmic Machine Learning and Data Science [class](https://www.chrismusco.com/amlds2023/) at NYU Tandon. For each class, I will post my handwritten notes, the python notebook for the demo, and the written material I used to prepare. My goal is for you to focus on learning the material in class without the need to write your own notes.
+
+### **Grading**
+
+Your grade in the class will be based on the number of points you earn. You will receive an A if you earn 93 or more points, an A- if you earn between 90 and 92 points, a B+ if you earn between 87 and 89 points, etc.
+
+**Participation and Questions (14 points):**
+Since winter term classes are smaller, let's take advantage of the opportunity for more engagement. Unless you have a reasonable excuse (e.g. sickness, family emergency), I expect you to attend every lecture and discussion. Whether you are able to attend or not, I expect you to fill out the form linked from the home page to receive credit for engagement (one point per lecture day that you fill it out). Of course, if you are not able to attend in person, you should read the reading before filling out the form.
+
+**Problem Sets (56 points):**
+There will be one problem per class. In order to encourage engagement with the solutions, your problem set grade will be based both on your solutions and your self-grade of your solutions.
+
+*Part 1: Solutions (3 points per homework problem)* 
+
+Writing clean and understandable math is an important skill so a component of your homework grade is to typeset your solutions in LaTeX. The homework (and LaTeX source) is posted on the homepage. I suggest working in Overleaf to avoid the hassle of setting up the requisite LaTeX software on your own computer.
+
+*Part 2: Self-grade (1 points per homework problem)*
+
+In order to encourage engagement with the solutions, you will reflect on what you did well in the homework and what you learned. You should submit the self-grade after comparing your answers to the solutions.
+
+**Project (30 points):**
+The purpose of randomized algorithms is to solve problems more efficiently *in practice*.
+In order to *practice*, you will select a topic we cover in class and implement an algorithm we discussed on a data set of your choosing. You will write a report describing your results and what you learned. You will also give a presentation showcasing your code to the class. You can complete your project as an individual or with a partner.
+
+**Late Policy:**
+I expect all assignments to be turned in on time.
+If you are unable to turn in an assignment on time, you must email me before the assignment is due to request an extension.
+
+### **Honor Code**
+Academic integrity is an important part of your learning experience. You are welcome to use online material and discuss problems with others but you must explicitly acknowledge the outside resources on the work you submit.
+
+If I notice that you have copied someone else's work without proper attribution (such as code from the internet without a reference link or a solution very close to another student's without giving credit), I will give you a warning. After the warning, I will subtract 5 points for every violation.
+
+### **Academic Accommodations**
+If you have a Letter of Accommodation, it is your responsibility to contact me as early in the term as possible. If you do not have a Letter of Accommodation and you believe you are eligible, please reach out to the ADA Coordinators at ada@middlebury.edu.

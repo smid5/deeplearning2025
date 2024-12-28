@@ -1,0 +1,31 @@
+project:
+  type: website
+  output-dir: docs
+  resources: CNAME
+
+format:
+  html:
+    theme: [cosmo, custom_theme.scss]
+    css: styles.css
+    toc: false
+    include-in-header: header.html
+
+website:
+  title: "Deep Learning" 
+  favicon: favicon.ico
+  navbar:    
+    css: styles.css
+    title: "CSCI 1051 Winter 2025"
+    search: false
+    left:
+      - text: "Canvas"
+        href: https://middlebury.instructure.com/courses/13944
+      - text: "Gradescope"
+        href: https://www.gradescope.com/courses/709735
+      - text: "Syllabus"
+        href: syllabus.html
+      - text: "Prior Years"
+        menu:
+            - text: "Winter 2023"
+              href: https://www.rtealwitter.com/deeplearning2023/
+      

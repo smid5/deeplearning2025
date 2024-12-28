@@ -1,0 +1,61 @@
+---
+title: "**CSCI 1052: Randomized Algorithms for Data Science**"
+output:
+  html_document:
+    css: styles.css
+---
+
+<center>
+An introduction to algorithms for efficiently finding patterns in large-scale data.
+</center>
+
+<br>
+
+<div class="row">
+  <div class="col-md-6" markdown="1">
+  **Instructor**: [R. Teal Witter](https://www.rtealwitter.com/). Please call me Teal.
+  
+  **Class Times**: We meet Monday, Tuesday, Wednesday, and Thursday in 75 Shannon St Room 202. The lecture is from 10am to noon and the discussion is from 2 to 3pm.
+  
+  **Office Hours**: I will hold office hours in 75 Shannon St Room 221 from 3 to 4pm.
+  
+  **Participation**: I expect you to engage in class, ask questions, and make connections. So that I can get a sense of how you're doing, please fill out [this](https://forms.gle/XNaiZFexa1JGJtTs5) form once per lecture. (You will receive one point per lecture if you answer the form.)
+  
+  **Discussion**: Please post all your course related questions on [Canvas](https://middlebury.instructure.com/courses/13944). If your question reveals your solution to a homework problem, please email me instead.
+  
+  </div>
+  <div class="col-md-6" markdown="1">
+  **Assignments**: You will receive one problem per class. I expect you to solve the problem with your group during the discussion (I'll be there to answer questions). Once you have solved the problem, you should write up your solution on your own. In addition, there will be a project on a lecture topic of your choice.
+  
+  Assignment | Work Due | Self-grade Due
+  :--- | :--- | :---
+  [Problem Set 1](psets/pset1.pdf)  | Friday 1/12 | Monday 1/15
+  [Problem Set 2](psets/pset2.pdf)  | Friday 1/19 | Monday 1/22
+  [Problem Set 3](psets/pset3.pdf)  | Friday 1/26 | Monday 1/29
+  [Problem Set 4](psets/pset4.pdf)  | Friday 2/2 | Monday 2/5
+  [Project Proposal](project/proposal.pdf) | Monday 1/22 |
+  [Project](project/project.pdf) | Friday 2/2 |
+  </div>
+</div>
+
+**Resources**: This class uses material from Chris Musco's phenomenal graduate Algorithmic Machine Learning and Data Science [course](https://www.chrismusco.com/amlds2023/) at NYU Tandon. For each class, I will post my typed notes and the handwritten slides we use in class.
+
+<tr>
+Class | Topic | Notes | Slides </tr><tr>
+:--- | :--- | :--- | :--- |
+Thursday 1/4   | Set Size Estimation | [Notes](notes/01_set_size.html) | [Slides](lectures/lecture01.pdf)  | </tr><tr>
+Monday 1/8     | Frequent Items | [Notes](notes/02_frequent_items.html) | [Slides](lectures/lecture02.pdf) | </tr><tr>
+Tuesday 1/9    | Distinct Elements| [Notes](notes/03_distinct_elements.html) | [Slides](lectures/lecture03.pdf) | </tr><tr>
+Wednesday 1/10 | Load Balancing | [Notes](notes/04_load_balancing.html) | [Slides](lectures/lecture04.pdf) | </tr><tr>
+Thursday 1/11  | Concentration Inequalities | [Notes](notes/05_concentration_inequalities.html) | [Slides](lectures/lecture05.pdf) | </tr><tr>
+Tuesday 1/16   | High-Dimensional Geometry | [Notes](notes/06_high_dimensional_geometry.html) | [Slides](lectures/lecture06.pdf) | </tr><tr>
+Wednesday 1/17 | Dimensionality Reduction | [Notes](notes/07_dimensionality_reduction.html) | [Slides](lectures/lecture07.pdf) | </tr><tr>
+Thursday 1/18  | Similarity Estimation | [Notes](notes/08_similarity_estimation.html) | [Slides](lectures/lecture08.pdf) | </tr><tr>
+Monday 1/22    | Singular Value Decomposition | [Notes](notes/14_singular_value_decomposition.html) | [Slides](lectures/lecture09.pdf) | </tr><tr>
+Tuesday 1/23   | Power Method | [Notes](notes/15_power_method.html) | [Slides](lectures/lecture10.pdf) | </tr><tr>
+Wednesday 1/24 | Spectral Graph Theory | [Notes](notes/16_spectral_graph_theory.html) | [Slides](lectures/lecture11.pdf) | </tr><tr>
+Thursday 1/25  | Sketched Regression | [Notes](notes/17_sketched_regression.html) | [Slides](lectures/lecture12.pdf) | </tr><tr>
+Monday 1/29    | Fast JL Transform | [Notes](notes/18_fast_jl_transform.html) | [Slides](lectures/lecture13.pdf) | </tr><tr>
+Tuesday 1/30   | Sparse Recovery | [Notes](notes/19_sparse_recovery.html) | [Slides](lectures/lecture14.pdf) | </tr><tr>
+
+
