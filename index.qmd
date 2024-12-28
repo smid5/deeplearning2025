@@ -20,9 +20,7 @@ Deep learning from theoretical foundations to state-of-the-art applications.
   **Office Hours**: I will hold office hours in 75 Shannon St Room 221 from 3 to 4pm.
   
   **Participation**: I expect you to engage in class, ask questions, and make connections. So that I can get a sense of how you're doing, please fill out [this](https://forms.gle/92hyvcHtCw4m62DWA) form once per lecture. (You will receive one point per lecture if you answer the form.)
-  
-  **Discussion**: Please post all your course related questions on [Canvas](https://middlebury.instructure.com/courses/16004). If your question reveals your solution to a homework problem, please email me instead.
-  
+    
   </div>
   <div class="col" markdown="1">
   **Assignments**: You will receive one problem per class. I expect you to solve the problem with your group during the discussion (I'll be there to answer questions). Once you have solved the problem, you should write up your solution on your own. In addition, there will be a project on a lecture topic of your choice.
@@ -62,8 +60,6 @@ Deep learning from theoretical foundations to state-of-the-art applications.
 
   </div>
 </div>
-
-**Resources**: This class is loosely based on Chinmay Hegde's phenomenal graduate Deep Learning [course](https://chinmayhegde.github.io/dl-notes/) at NYU Tandon. For each class, I will post my handwritten slides.
 
 <table style="width: 100%; border-collapse: collapse;">
   <tr>
