@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Syllabus</title>
+<title>CSCI 1051: Syllabus</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -143,7 +143,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><strong>Syllabus</strong></h1>
+<h1 class="title"><strong>CSCI 1051: Syllabus</strong></h1>
 </div>
 
 
@@ -160,30 +160,44 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Course Description:</strong> In this class, we will discover how data science techniques are deployed at scale. The questions we investigate will include: How do services such as Shazam recognize song clips in seconds? In settings with hundreds of features, how do we find patterns? Given a social network, how can we detect groups? And how can we use vibrations to “see” into the earth? We’ll answer these questions and more by exploring how randomization lets us get away with far fewer resources than we’d otherwise need. Topics include random variables, concentration inequalities, dimensionality reduction, singular value decomposition, spectral graph theory, and approximate linear regression.</p>
-<p><strong>Prerequisites:</strong> I will assume familiarity with linear algebra and algorithms. We will write some code in python and I expect you to be familiar with it.</p>
-<p><strong>Structure:</strong> We will meet on Monday, Tuesday, Wednesday, and Thursday at 75 Shannon in Room 202. The lecture is from 10am to 12pm and the discussion is from 2 to 3pm. I will hold my office hours directly after the discussion.</p>
-<p><strong>Resources</strong>: This class uses material from Chris Musco’s phenomenal graduate Algorithmic Machine Learning and Data Science <a href="https://www.chrismusco.com/amlds2023/">class</a> at NYU Tandon. For each class, I will post my handwritten notes, the python notebook for the demo, and the written material I used to prepare. My goal is for you to focus on learning the material in class without the need to write your own notes.</p>
+<p><strong>Course Description:</strong> Deep learning has revolutionized our ability to solve complex problems, but its success often obscures the underlying principles that make it work. This course offers a structured approach to understanding and applying deep learning techniques, beginning with the theoretical foundations of linear and logistic regression. We will then generalize these ideas into a three-step deep learning framework (architecture, loss function, and optimizer). Applying this framework, we will explore modern generative methods like auto-regressive language models and diffusion. Because the tools we discuss are so powerful, it is important to understand their limitations. To this end, we will also cover techniques for interpreting deep learning predictions and adding safeguards to generated content.</p>
+<p><strong>Prerequisites:</strong> I will assume familiarity with calculus, linear regression, probability, and Python. In particular, I will assume you are comfortable with derivatives, the chain rule, gradients, matrix multiplication, and probability distributions.</p>
+<p><strong>Structure:</strong> We will meet on Monday, Tuesday, Wednesday, and Thursday at 75 Shannon in Room 202. The lecture is from 10am to 12pm and the discussion is from 2 to 4pm. I will hold my office hours during the last hour of the discussion. If you would like to meet outside of these times, please email me.</p>
+<p><strong>Resources</strong>: This class is loosely based on Chinmay Hegde’s phenomenal graduate Deep Learning <a href="https://chinmayhegde.github.io/dl-notes/">course</a> at NYU Tandon. For each class, I will post my handwritten slides. I would also like for you to be able to access curated notes. To this end, one of the assignments in the class is to scribe notes on a lecture of your choice.</p>
+<p><strong>Discussion</strong>: Please post all your course related questions on <a href="https://middlebury.instructure.com/courses/16004">Canvas</a>. If your question reveals your solution to a homework problem, please email me instead.</p>
 <section id="grading" class="level3">
 <h3 class="anchored" data-anchor-id="grading"><strong>Grading</strong></h3>
-<p>Your grade in the class will be based on the number of points you earn. You will receive an A if you earn 93 or more points, an A- if you earn between 90 and 92 points, a B+ if you earn between 87 and 89 points, etc.</p>
-<p><strong>Participation and Questions (14 points):</strong> Since winter term classes are smaller, let’s take advantage of the opportunity for more engagement. Unless you have a reasonable excuse (e.g.&nbsp;sickness, family emergency), I expect you to attend every lecture and discussion. Whether you are able to attend or not, I expect you to fill out the form linked from the home page to receive credit for engagement (one point per lecture day that you fill it out). Of course, if you are not able to attend in person, you should read the reading before filling out the form.</p>
-<p><strong>Problem Sets (56 points):</strong> There will be one problem per class. In order to encourage engagement with the solutions, your problem set grade will be based both on your solutions and your self-grade of your solutions.</p>
+<p>Your grade in the class will be based on the number of points you earn. You will receive an A if you earn 93 or more points, an A- if you earn between 90 and 92 points (inclusive), a B+ if you earn between 87 and 89 points (inclusive), etc.</p>
+<p><strong>Participation and Questions (13 points):</strong> Since winter term classes are smaller, let’s take advantage of the opportunity for more engagement. Unless you have a reasonable excuse (e.g.&nbsp;sickness, family emergency), I expect you to attend every lecture and discussion. Whether you are able to attend or not, I expect you to fill out the form linked from the home page to receive credit for engagement (one point per lecture day that you fill it out). Of course, if you are not able to attend in person, you should watch the recorded zoom lecture before filling out the form.</p>
+<p><strong>Problem Sets (52 points):</strong> There will be one problem per class. In order to encourage engagement with the solutions, your problem set grade will be based both on your solutions and your self-grade of your solutions.</p>
 <p><em>Part 1: Solutions (3 points per homework problem)</em></p>
-<p>Writing clean and understandable math is an important skill so a component of your homework grade is to typeset your solutions in LaTeX. The homework (and LaTeX source) is posted on the homepage. I suggest working in Overleaf to avoid the hassle of setting up the requisite LaTeX software on your own computer.</p>
+<p>You may work on the problems with your classmates. However, you should write your solutions and comment your code by yourself.</p>
 <p><em>Part 2: Self-grade (1 points per homework problem)</em></p>
 <p>In order to encourage engagement with the solutions, you will reflect on what you did well in the homework and what you learned. You should submit the self-grade after comparing your answers to the solutions.</p>
-<p><strong>Project (30 points):</strong> The purpose of randomized algorithms is to solve problems more efficiently <em>in practice</em>. In order to <em>practice</em>, you will select a topic we cover in class and implement an algorithm we discussed on a data set of your choosing. You will write a report describing your results and what you learned. You will also give a presentation showcasing your code to the class. You can complete your project as an individual or with a partner.</p>
+<p><strong>Project (30 points):</strong> In order to practice implementing the ideas we cover, you will select a topic we cover in class and implement an algorithm we discussed on a data set of your choosing. You will write a report describing your results and what you learned. You will also give a presentation showcasing your code to the class. You can complete your project as an individual or with a partner.</p>
+<p><strong>Curated Notes (5 points):</strong> Notes are a great resource for augmenting your in-class learning. While I have notes for the prior iteration of this course, I since updated the topics in this course to account for much of the progress in deep learning in the last two years. Unfortunately, I haven’t had time to create a new set of notes to reflect the current content. As such, I would like to ask for your help in writing these notes. I will provide an example for the first class (including the finished product and the source). Thereafter, students can sign up on <a href="https://docs.google.com/spreadsheets/d/18PWX6a_zg5qmj2239nig4vYlq4IUhKRv0tRu2yGz9_A/edit?usp=sharing">this sheet</a> to write notes for a lecture of your choice. You will have access to my handwritten slides, a zoom recording of the lecture, and any generative model. Because I hope to use these notes in future iterations of the course (with appropriate acknowledgements, of course), I will grade the notes stringently and allow you to resubmit them once.</p>
 <p><strong>Late Policy:</strong> I expect all assignments to be turned in on time. If you are unable to turn in an assignment on time, you must email me before the assignment is due to request an extension.</p>
 </section>
 <section id="honor-code" class="level3">
 <h3 class="anchored" data-anchor-id="honor-code"><strong>Honor Code</strong></h3>
 <p>Academic integrity is an important part of your learning experience. You are welcome to use online material and discuss problems with others but you must explicitly acknowledge the outside resources on the work you submit.</p>
 <p>If I notice that you have copied someone else’s work without proper attribution (such as code from the internet without a reference link or a solution very close to another student’s without giving credit), I will give you a warning. After the warning, I will subtract 5 points for every violation.</p>
+<p><strong>Large Language Models:</strong> LLMs (that we learn about in class!) are a powerful tool. However, while they are very good at producing human-like text, they have no inherent sense of ‘correctness’. You may use LLMs (as detailed below) but you are wholly responsible for the material you submit.</p>
+<p>You may use LLMs for:</p>
+<ul>
+<li><p>Implementing short blocks of code that you can easily check.</p></li>
+<li><p>Simple questions whose answers you can easily verify.</p></li>
+</ul>
+<p>Do not use LLMS for:</p>
+<ul>
+<li><p>Implementing extensive code or code that you don’t understand.</p></li>
+<li><p>Complicated questions (like those on the problem sets) that you would learn from answering yourself.</p></li>
+</ul>
+<p>Ultimately, the point of the assignments in this class are for you to practice the concepts. If you use an LLM in lieu of practice, then you deny yourself the chance to learn.</p>
 </section>
 <section id="academic-accommodations" class="level3">
 <h3 class="anchored" data-anchor-id="academic-accommodations"><strong>Academic Accommodations</strong></h3>
-<p>If you have a Letter of Accommodation, it is your responsibility to contact me as early in the term as possible. If you do not have a Letter of Accommodation and you believe you are eligible, please reach out to the ADA Coordinators at ada@middlebury.edu.</p>
+<p>If you have a Letter of Accommodation, please contact me as early in the term as possible. If you do not have a Letter of Accommodation and you believe you are eligible, please reach out to the ADA Coordinators at ada@middlebury.edu.</p>
 
 
 </section>
