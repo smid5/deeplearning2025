@@ -179,7 +179,7 @@ window.Quarto = {
   <li><a href="#vector-and-matrix-multiplication" id="toc-vector-and-matrix-multiplication" class="nav-link" data-scroll-target="#vector-and-matrix-multiplication">Vector and Matrix Multiplication</a></li>
   <li><a href="#inverse-matrices" id="toc-inverse-matrices" class="nav-link" data-scroll-target="#inverse-matrices">Inverse Matrices</a></li>
   </ul></li>
-  <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression">Linear Regression</a>
+  <li><a href="#univariate-linear-regression" id="toc-univariate-linear-regression" class="nav-link" data-scroll-target="#univariate-linear-regression">Univariate Linear Regression</a>
   <ul class="collapse">
   <li><a href="#goal" id="toc-goal" class="nav-link" data-scroll-target="#goal">Goal</a></li>
   <li><a href="#linear-model" id="toc-linear-model" class="nav-link" data-scroll-target="#linear-model">Linear Model</a></li>
@@ -192,16 +192,7 @@ window.Quarto = {
   <li><a href="#mean-squared-error" id="toc-mean-squared-error" class="nav-link" data-scroll-target="#mean-squared-error">Mean Squared Error</a></li>
   <li><a href="#exact-optimization-1" id="toc-exact-optimization-1" class="nav-link" data-scroll-target="#exact-optimization-1">Exact Optimization</a></li>
   </ul></li>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a>
-  <ul class="collapse">
-  <li><a href="#probability-background" id="toc-probability-background" class="nav-link" data-scroll-target="#probability-background">Probability Background</a></li>
-  <li><a href="#independent-random-variables" id="toc-independent-random-variables" class="nav-link" data-scroll-target="#independent-random-variables">Independent Random Variables</a></li>
-  <li><a href="#linearity-of-expectation" id="toc-linearity-of-expectation" class="nav-link" data-scroll-target="#linearity-of-expectation">Linearity of Expectation</a></li>
-  </ul></li>
-  <li><a href="#set-size-estimation" id="toc-set-size-estimation" class="nav-link" data-scroll-target="#set-size-estimation">Set Size Estimation</a>
-  <ul class="collapse">
-  <li><a href="#markovs-inequality" id="toc-markovs-inequality" class="nav-link" data-scroll-target="#markovs-inequality">Markov’s Inequality</a></li>
-  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -229,258 +220,197 @@ window.Quarto = {
 
 <section id="math-review" class="level2">
 <h2 class="anchored" data-anchor-id="math-review">Math Review</h2>
-<p>When I first heard about ‘’machine learning’’, I imagined a machine that was rewarded every time it gave the right answer. Maybe there were electric carrots and sticks that no one had bothered to tell me about? While I now know about as little as I did then about computer hardware, I have learned machine learning is fundamentally a mathematical process.</p>
-<p>The truth is that all the ‘magic’ lies in optimization and math. Luckily, you’ve been learning about these very ideas for years! We’ll review the concepts and then jump in to machine learning through the example of linear regression.</p>
+<p>When I first heard about machine <em>learning</em>, I imagined a computer that was rewarded every time it gave the right answer. Maybe there were electric carrots and sticks that no one had bothered to tell me about? While I now know as little as I did then about computer hardware, I have learned that machine learning is fundamentally a mathematical process.</p>
+<p>Luckily, we’ve been learning about the very mathematical ideas that make machine learning work for years! We’ll review the basics of these concepts and then jump in to linear regression.</p>
 <section id="derivatives" class="level3">
 <h3 class="anchored" data-anchor-id="derivatives">Derivatives</h3>
-<p>Imagine a function <span class="math inline">\(\ell: \mathbb{R} \to \mathbb{R}\)</span>. This notation means it takes a single real number as input and outputs a single real number. In general, we should be careful about whether we can even differentiate a function but, we’re computer scientists so we’ll just risk it for the biscuit.</p>
-<p>The derivative of <span class="math inline">\(\ell\)</span> with respect to its input <span class="math inline">\(z\)</span> we’ll denote by <span class="math inline">\(\frac{\partial}{\partial z}[\ell(z)]\)</span>.</p>
+<p>Imagine a function <span class="math inline">\(\mathcal{L}: \mathbb{R} \to \mathbb{R}\)</span>. (Instead of the usual <span class="math inline">\(f\)</span>, we’ll use <span class="math inline">\(\mathcal{L}\)</span> for reasons that will soon become clear.) The mapping notation means that <span class="math inline">\(\mathcal{L}\)</span> takes a single real number as input and outputs a single real number. In general, mathematicians tell us to be careful about whether we can differentiate a function. But, we’re computer scientists so we’ll risk it for the biscuit.</p>
+<p>Let <span class="math inline">\(z \in \mathbb{R}\)</span> be the input to <span class="math inline">\(\mathcal{L}\)</span>. The derivative of <span class="math inline">\(\mathcal{L}\)</span> with respect to its input <span class="math inline">\(z\)</span> is mathematically denoted by <span class="math inline">\(\frac{\partial}{\partial z}[\mathcal{L}(z)]\)</span>.</p>
 <p>Formally, the derivative is defined as <span class="math display">\[
-\frac{\partial}{\partial z}[\ell(z)]
-= \lim_{h \to 0} \frac{\ell(z + h) - \ell(z)}{h}.
-\]</span> This is just the slope of a line and you’ve been learning about it for ages.</p>
-<p>For example, we know that for <span class="math inline">\(\ell(z) = z^a + b\)</span>, the derivative <span class="math inline">\(\frac{\partial}{\partial z}[\ell(z)] = a z^{a-1}\)</span> by the power rule.</p>
-<p>We also know more fancy rules like that for <span class="math inline">\(\ell(z) = \ln (z)\)</span>, the derivative <span class="math inline">\(\frac{\partial}{\partial z}[\ell(z)] = \frac1{z}\)</span>.</p>
+\frac{\partial}{\partial z}[\mathcal{L}(z)]
+= \lim_{h \to 0} \frac{\mathcal{L}(z + h) - \mathcal{L}(z)}{h}.
+\]</span> If we were to plot <span class="math inline">\(\mathcal{L}\)</span>, the derivative at a point <span class="math inline">\(z\)</span> would be the slope of the tangent line to the curve at that point.</p>
+<p>Here are several examples of functions and their derivatives that you might remember from calculus.</p>
+<table style="width: 100%; border-collapse: collapse; text-align: center;">
+<tbody><tr>
+<td>
+<b>Function: <span class="math inline">\(\mathcal{L}(z)\)</span> </b>
+</td>
+<td>
+<b>Derivative: <span class="math inline">\(\frac{\partial}{\partial z}[\mathcal{L}(z)]\)</span></b>
+</td>
+</tr>
+<tr>
+<td>
+<span class="math display">\[z^2\]</span>
+</td>
+<td>
+<span class="math display">\[2z\]</span>
+</td>
+</tr>
+<tr>
+<td>
+<span class="math display">\[z^a\]</span>
+</td>
+<td>
+<span class="math display">\[a z^{a-1}\]</span>
+</td>
+</tr>
+<tr>
+<td>
+<span class="math display">\[az + b\]</span>
+</td>
+<td>
+<span class="math display">\[a\]</span>
+</td>
+</tr>
+<tr>
+<td>
+<span class="math display">\[\ln(z)\]</span>
+</td>
+<td>
+<span class="math display">\[\frac{1}{z}\]</span>
+</td>
+</tr>
+<tr>
+<td>
+<span class="math display">\[e^z\]</span>
+</td>
+<td>
+<span class="math display">\[e^z\]</span>
+</td>
+</tr>
+</tbody></table>
 </section>
 <section id="chain-rule-and-product-rule" class="level3">
 <h3 class="anchored" data-anchor-id="chain-rule-and-product-rule">Chain Rule and Product Rule</h3>
-<p>While the basic operations are nice, we’re not always so lucky. Modern machine learning chains many many complicated functions together. Fortunately, we will think of these functions modularly.</p>
-<p>Let <span class="math inline">\(g: \mathbb{R} \to \mathbb{R}\)</span> be another function. Consider the compositive function <span class="math inline">\(g(\ell(z))\)</span>.</p>
-<p>By the chain rule, the derivative <span class="math display">\[
-\frac{\partial }{\partial z}[g(\ell(z))]
-= \frac{\partial g}{\partial z}(\ell(z))
-\frac{\partial}{\partial z}[\ell(z)].
+<p>While working with a simple basic function is easy, we’re not always so lucky. Modern machine learning chains many many complicated functions together. Fortunately, we will think of these operations modularly.</p>
+<p>Let <span class="math inline">\(g: \mathbb{R} \to \mathbb{R}\)</span> be another function. Consider the composite function <span class="math inline">\(g(\mathcal{L}(z))\)</span>.</p>
+<p>By the chain rule, the derivative of <span class="math inline">\(g(\mathcal{L}(z))\)</span> with respect to <span class="math inline">\(z\)</span> is <span class="math display">\[
+\frac{\partial }{\partial z}[g(\mathcal{L}(z))]
+= \frac{\partial g}{\partial z}(\mathcal{L}(z))
+\frac{\partial}{\partial z}[\mathcal{L}(z)].
 \]</span></p>
 <p>Often, we will also multiply functions together. The product rule tells us that <span class="math display">\[
-\frac{\partial }{\partial z}[g(z) \ell(z)]
-= g(z) \frac{\partial}{\partial z}[\ell(z)]
-+ \ell(z) \frac{\partial}{\partial z}[g(z)].
+\frac{\partial }{\partial z}[g(z) \mathcal{L}(z)]
+= g(z) \frac{\partial}{\partial z}[\mathcal{L}(z)]
++ \mathcal{L}(z) \frac{\partial}{\partial z}[g(z)].
 \]</span></p>
 </section>
 <section id="gradients" class="level3">
 <h3 class="anchored" data-anchor-id="gradients">Gradients</h3>
-<p>In machine learning, we process lots of data. So the functions we consider generally have multivariate input. Consider <span class="math inline">\(\ell: \mathbb{R}^d \to \mathbb{R}\)</span>. Now, the output of the function is still a real number but the input consists of <span class="math inline">\(d\)</span> real numbers.</p>
-<p>With multivariate functions, we will talk about the partial derivative with respect to each one of the inputs <span class="math inline">\(z_1, \ldots, z_d\)</span>. We will use the vector <span class="math inline">\(\mathbf{z} \in \mathbb{R}^d\)</span> to represent all <span class="math inline">\(d\)</span> inputs. The partial derivative with respect to <span class="math inline">\(z_i\)</span> is denoted by <span class="math inline">\(\frac{\partial}{\partial z_i}[\ell(\mathbf{z})]\)</span> and treats all the variables <span class="math inline">\(z_j\)</span> for <span class="math inline">\(j \neq i\)</span> as constant.</p>
-<p>The gradient of <span class="math inline">\(\ell\)</span> with respect to the input <span class="math inline">\(\mathbf{z}\)</span> is the vector <span class="math inline">\(\nabla_{\mathbf{z}} \ell\)</span>. The <span class="math inline">\(i\)</span>th entry of this vector is given by the partial derivative of <span class="math inline">\(\ell\)</span> with respect to <span class="math inline">\(z_i\)</span>. In mathematical notation, <span class="math display">\[
-\nabla_\mathbf{z} \ell = \begin{cases} \frac{\partial}{\partial z_1}[\ell(\mathbf{z})] \\ \vdots \\ \frac{\partial}{\partial z_d}[\ell(\mathbf{z})] \\ \end{cases}
+<p>In machine learning, we process high-dimensional data so we are interested in functions with multivariate input. Consider <span class="math inline">\(\mathcal{L}: \mathbb{R}^d \to \mathbb{R}\)</span>. The output of the function is still a real number but the input consists of <span class="math inline">\(d\)</span> real numbers. We will use the vector <span class="math inline">\(\mathbf{z} \in \mathbb{R}^d\)</span> to represent all <span class="math inline">\(d\)</span> inputs <span class="math inline">\(z_1, \ldots, z_d\)</span>.</p>
+<p>Instead of the derivative, we will talk use the partial derivative. The partial derivative with respect to <span class="math inline">\(z_i\)</span> is denoted by <span class="math inline">\(\frac{\partial}{\partial z_i}[\mathcal{L}(\mathbf{z})]\)</span>. In effect, the partial derivative tells us how <span class="math inline">\(\mathcal{L}\)</span> changes when we change <span class="math inline">\(z_i\)</span> while keeping all other inputs fixed.</p>
+<p>The gradient stores all the partial derivatives in a vector. The <span class="math inline">\(i\)</span>th entry of this vector is given by the partial derivative of <span class="math inline">\(\mathcal{L}\)</span> with respect to <span class="math inline">\(z_i\)</span>. In mathematical notation, <span class="math display">\[
+\nabla_\mathbf{z} \mathcal{L} = \left[\begin{smallmatrix} \frac{\partial}{\partial z_1}[\mathcal{L}(\mathbf{z})] \\ \vdots \\ \frac{\partial}{\partial z_d}[\mathcal{L}(\mathbf{z})] \\ \end{smallmatrix}\right]
 \]</span></p>
-<p>Just like the derivative in one dimension, the gradient gives contains information about the slope of <span class="math inline">\(\ell\)</span> with respect to each of the <span class="math inline">\(d\)</span> dimensions.</p>
+<p>Just like the derivative in one dimension, the gradient contains information about the slope of <span class="math inline">\(\mathcal{L}\)</span> with respect to each of the <span class="math inline">\(d\)</span> dimensions in its input.</p>
 </section>
 <section id="vector-and-matrix-multiplication" class="level3">
 <h3 class="anchored" data-anchor-id="vector-and-matrix-multiplication">Vector and Matrix Multiplication</h3>
-<p>Consider two vectors <span class="math inline">\(\mathbf{u} \in \mathbb{R}^d\)</span> and <span class="math inline">\(\mathbf{v} \in \mathbb{R}^d\)</span>. We will use <span class="math inline">\(\mathbf{u} \cdot \mathbf{v} = \sum_{i=1}^d u_i v_i\)</span> to denote the inner product of <span class="math inline">\(\mathbf{u}\)</span> and <span class="math inline">\(\mathbf{v}\)</span>. The <span class="math inline">\(\ell_2\)</span>-norm of <span class="math inline">\(v\)</span> is given by <span class="math inline">\(\|\mathbf{v}\|_2 = \sqrt{\mathbf{u} \cdot \mathbf{u}}\)</span>.</p>
-<p>Matrix multiplication lives at the heart of deep learning. In fact, deep learning really started to take off when researchers realized that the Graphical Processing Unit (GPU) could be used to perform gradient updates in addition to the matrix multiplication it was designed to do for gaming.</p>
-<p>Consider two matrices: <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{d \times m}\)</span> and <span class="math inline">\(\mathbf{B} \in \mathbb{R}^{m \times n}\)</span> where <span class="math inline">\(d \neq n\)</span>.</p>
-<p>We can only multiply two matrices when their <em>inner</em> dimension agrees. Because the number of columns in <span class="math inline">\(\mathbf{A}\)</span> is the same as the number of rows in <span class="math inline">\(\mathbf{B}\)</span>, we can compute <span class="math inline">\(\mathbf{AB}\)</span>. However, because the number of columns in <span class="math inline">\(\mathbf{B}\)</span> is not the same as the number of rows in <span class="math inline">\(\mathbf{A}\)</span>, the product is <span class="math inline">\(\mathbf{BA}\)</span> is not defined.</p>
-<p>When we can multiply two matrices, the <span class="math inline">\((i,j)\)</span> entry in <span class="math inline">\(\mathbf{AB}\)</span> is given by the inner product between the <span class="math inline">\(i\)</span>th row of <span class="math inline">\(\mathbf{A}\)</span> and the <span class="math inline">\(j\)</span>th column of <span class="math inline">\(\mathbf{B}\)</span>. The resulting dimensions of the matrix product will be the number of rows in <span class="math inline">\(\mathbf{A}\)</span> by the number of columns in <span class="math inline">\(\mathbf{B}\)</span>.</p>
+<p>Vector and matrix multiplication lives at the heart of deep learning. In fact, deep learning really started to take off when researchers realized that the Graphical Processing Unit (GPU) could be used to perform gradient updates in addition to the matrix multiplication it was designed to do for gaming.</p>
+<p>Consider two vectors <span class="math inline">\(\mathbf{u} \in \mathbb{R}^d\)</span> and <span class="math inline">\(\mathbf{v} \in \mathbb{R}^d\)</span>. We will use <span class="math inline">\(\mathbf{u} \cdot \mathbf{v} = \sum_{i=1}^d u_i v_i\)</span> to denote the inner product of <span class="math inline">\(\mathbf{u}\)</span> and <span class="math inline">\(\mathbf{v}\)</span>. The <span class="math inline">\(\mathcal{\ell}_2\)</span>-norm of <span class="math inline">\(v\)</span> is given by <span class="math inline">\(\|\mathbf{v}\|_2 = \sqrt{\mathbf{u} \cdot \mathbf{u}}\)</span>.</p>
+<p>Consider two matrices: <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{d \times m}\)</span> and <span class="math inline">\(\mathbf{B} \in \mathbb{R}^{m \times n}\)</span> where <span class="math inline">\(d \neq n\)</span>. We can only multiply two matrices when their <em>inner</em> dimension agrees. Because the number of columns in <span class="math inline">\(\mathbf{A}\)</span> is the same as the number of rows in <span class="math inline">\(\mathbf{B}\)</span>, we can compute <span class="math inline">\(\mathbf{AB}\)</span>. However, because the number of columns in <span class="math inline">\(\mathbf{B}\)</span> is not the same as the number of rows in <span class="math inline">\(\mathbf{A}\)</span>, the product <span class="math inline">\(\mathbf{BA}\)</span> is not defined.</p>
+<p>When we <em>can</em> multiply two matrices, the <span class="math inline">\((i,j)\)</span> entry in <span class="math inline">\(\mathbf{AB}\)</span> is given by the inner product between the <span class="math inline">\(i\)</span>th row of <span class="math inline">\(\mathbf{A}\)</span> and the <span class="math inline">\(j\)</span>th column of <span class="math inline">\(\mathbf{B}\)</span>. The resulting dimensions of the matrix product will be the number of rows in <span class="math inline">\(\mathbf{A}\)</span> by the number of columns in <span class="math inline">\(\mathbf{B}\)</span>.</p>
 </section>
 <section id="inverse-matrices" class="level3">
 <h3 class="anchored" data-anchor-id="inverse-matrices">Inverse Matrices</h3>
-<p>If we have a scalar equation <span class="math inline">\(ax = b\)</span>, we can simply solve for <span class="math inline">\(x\)</span> by dividing both sides by <span class="math inline">\(a\)</span>. In effect, we are applying the inverse of <span class="math inline">\(a\)</span> to <span class="math inline">\(a\)</span> since <span class="math inline">\(\frac1{a} a =1\)</span>. The same principle applies to matrices. For matrices, the <span class="math inline">\(n \times n\)</span> identity matrix generalizes the scalar <span class="math inline">\(1\)</span>. The identity matrix is denoted by <span class="math inline">\(\mathbf{I}_{n \times n} \in \mathbb{R}^{n \times n}\)</span>: the on-diagonal entries <span class="math inline">\((i,i)\)</span> are 1 while the off-diagonal entries <span class="math inline">\((i,j)\)</span> for <span class="math inline">\(i\neq j\)</span> are 0.</p>
-<p>Suppose we have the equation <span class="math inline">\(\mathbf{Ax} = \mathbf{b}\)</span> where <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{d \times d}\)</span>, <span class="math inline">\(\mathbf{x} \in \mathbb{R}^d\)</span>, and <span class="math inline">\(\mathbf{b} \in \mathbb{R}^d\)</span>. (Notice that the inner dimensions of <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{x}\)</span> agree so their multiplication is well-defined, and the resulting vector is the same dimension as <span class="math inline">\(\mathbf{b}\)</span>.)</p>
-<p>If we want to solve for <span class="math inline">\(\mathbf{x}\)</span>, we can use the same inverse idea. For a matrix <span class="math inline">\(\mathbf{A}\)</span>, we use <span class="math inline">\(\mathbf{A}^{-1}\)</span> to denote its inverse. The inverse is defined so that <span class="math inline">\(\mathbf{A}^{-1} \mathbf{A} = \mathbf{I}_{n \times n}\)</span> where <span class="math inline">\(\mathbf{I}_{n \times n}\)</span> is the identity matrix.</p>
+<p>If we have a scalar equation <span class="math inline">\(ax = b\)</span>, we can simply solve for <span class="math inline">\(x\)</span> by dividing both sides by <span class="math inline">\(a\)</span>. In effect, we are applying the inverse of <span class="math inline">\(a\)</span> to <span class="math inline">\(a\)</span> i.e., <span class="math inline">\(\frac1{a} a =1\)</span>. The same principle applies to matrices. The <span class="math inline">\(n \times n\)</span> identity matrix generalizes the scalar identity <span class="math inline">\(1\)</span>. This identity matrix is denoted by <span class="math inline">\(\mathbf{I}_{n \times n} \in \mathbb{R}^{n \times n}\)</span>: the on-diagonal entries <span class="math inline">\((i,i)\)</span> are 1 while the off-diagonal entries <span class="math inline">\((i,j)\)</span> for <span class="math inline">\(i\neq j\)</span> are 0.</p>
+<p>Consider the matrix equation <span class="math inline">\(\mathbf{Ax} = \mathbf{b}\)</span> where <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{d \times d}\)</span>, <span class="math inline">\(\mathbf{x} \in \mathbb{R}^d\)</span>, and <span class="math inline">\(\mathbf{b} \in \mathbb{R}^d\)</span>. (Notice that the inner dimensions of <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{x}\)</span> agree so their multiplication is well-defined, and the resulting vector is the same dimension as <span class="math inline">\(\mathbf{b}\)</span>.)</p>
+<p>If we want to solve for <span class="math inline">\(\mathbf{x}\)</span>, we can use the matrix inverse. For a matrix <span class="math inline">\(\mathbf{A}\)</span>, we use <span class="math inline">\(\mathbf{A}^{-1}\)</span> to denote its inverse. The inverse is defined so that <span class="math inline">\(\mathbf{A}^{-1} \mathbf{A} = \mathbf{I}_{n \times n}\)</span> where <span class="math inline">\(\mathbf{I}_{n \times n}\)</span> is the identity matrix. Then, we can solve for <span class="math inline">\(\mathbf{x}\)</span> by multiplying both sides of the equation by <span class="math inline">\(\mathbf{A}^{-1}\)</span>. <span class="math display">\[
+\mathbf{A}^{-1} \mathbf{Ax} = \mathbf{A}^{-1} \mathbf{b}
+\]</span> Since <span class="math inline">\(\mathbf{A}^{-1} \mathbf{A} = \mathbf{I}_{n \times n}\)</span>, we have that <span class="math inline">\(\mathbf{I}_{n \times n} \mathbf{x} = \mathbf{x} = \mathbf{A}^{-1} \mathbf{b}\)</span>.</p>
 </section>
 </section>
-<section id="linear-regression" class="level2">
-<h2 class="anchored" data-anchor-id="linear-regression">Linear Regression</h2>
+<section id="univariate-linear-regression" class="level2">
+<h2 class="anchored" data-anchor-id="univariate-linear-regression">Univariate Linear Regression</h2>
+<p>Now that we’ve reviewed the basic building blocks of machine learning, we can dive into linear regression. Linear regression is a simple and powerful tool that we will use to understand the basics of deep learning.</p>
 <section id="goal" class="level3">
 <h3 class="anchored" data-anchor-id="goal">Goal</h3>
-<p>We will begin the course in the supervised learning setting. In this setting, we are given labelled data with input features and an outcome. Formally, we will have <span class="math inline">\(n\)</span> labelled observations <span class="math inline">\((x_1, y_1), (x_2, y_2), \ldots (x_n, y_n)\)</span>. In general, we will have <span class="math inline">\(y \in \mathbb{R}\)</span>. For simplicity, we will assume for now that <span class="math inline">\(x \in \mathbb{R}\)</span>.</p>
-<p>Our goal is to process the data and learn a function that approximates the outcomes. In mathematical notation, we want to learn a function <span class="math inline">\(f: \mathbb{R} \to \mathbb{R}\)</span> so that <span class="math inline">\(f(x_i) \approx y_i\)</span> for the labelled observations.</p>
+<p>We will begin our study of deep learning in the supervised setting. In this setting, we are given labelled data with input features and an outcome. Formally, we will have <span class="math inline">\(n\)</span> labelled observations <span class="math inline">\((x^{(1)}, y^{(1)}), \ldots, (x^{(n)}, y^{(n)})\)</span>. In general, we will have <span class="math inline">\(y \in \mathbb{R}\)</span>. For simplicity, we will assume for now that <span class="math inline">\(x \in \mathbb{R}\)</span>.</p>
+<p>Our goal is to process the data and learn a function that approximates the outcomes. In mathematical notation, we want to learn a function <span class="math inline">\(f: \mathbb{R} \to \mathbb{R}\)</span> so that <span class="math inline">\(f(x^{(i)}) \approx y^{(i)}\)</span> for the <span class="math inline">\(n\)</span> labelled observations <span class="math inline">\(i \in \{1,\ldots,n\}\)</span>.</p>
 <p>Before we dive into the specific way we will accomplish this with linear regression, let’s discuss the general deep learning framework. This three-step framework gives a flexible scaffolding that we will use to understand almost every topic in this course.</p>
-<p>The three-Step framework includes:</p>
-<p>• <strong>Model:</strong> The function that we’ll use to process the input and produce a corresponding output.</p>
-<p>• <strong>Loss:</strong> The function that measures the quality of the outputs from our model. (Without loss of generality, we will assume that lower is better.)</p>
-<p>• <strong>Optimizer:</strong> The method of updating the model to improve the loss.</p>
+<p>The three-step framework includes:</p>
+<p>• <strong>The Model:</strong> The function that we’ll use to process the input and produce a corresponding output.</p>
+<p>• <strong>The Loss:</strong> The function that measures the quality of the outputs from our model. (Without loss of generality, we will assume that lower is better.)</p>
+<p>• <strong>The Optimizer:</strong> The method of updating the model to improve the loss.</p>
+<p>With these general concepts in mind, we’ll explore linear regression.</p>
 </section>
 <section id="linear-model" class="level3">
 <h3 class="anchored" data-anchor-id="linear-model">Linear Model</h3>
-<p>With these general concepts in mind, we’ll explore linear regression. As its name suggests, linear regression uses a linear model to process the input and approximate the output.</p>
-<p>Let <span class="math inline">\(w \in \mathbb{R}\)</span> be a weight parameter. The linear model (for one-dimensional inputs) is given by <span class="math inline">\(f(x) = wx\)</span>.</p>
+<p>As its name suggests, linear regression uses a linear model to process the input into an approximation of the output. Let <span class="math inline">\(w \in \mathbb{R}\)</span> be a weight parameter. The linear model (for one-dimensional inputs) is given by <span class="math inline">\(f(x) = wx\)</span>.</p>
 <p>Unlike many deep learning models, we can visualize the linear model since it is given by a line. In the plot, we have the <span class="math inline">\(n=10\)</span> data points plotted in 2 dimensions. There is one linear model <span class="math inline">\(f(x) = 2x\)</span> that closely approximates the data and another linear model <span class="math inline">\(f(x)=\frac12 x\)</span> that does not approximate the data.</p>
 <center>
 <img src="images/regression_1d.pdf" width="700">
 </center>
-<p>Our goal is to learn how to find a linear model that fits the data well. Before we can do this though, we need to figure out how to measure how well the line fits the data.</p>
+<p>Our goal is to learn how to find a linear model that fits the data well. Before we can do this though, we will need to define what it means for a model to “fit the data well”.</p>
 </section>
 <section id="mean-squared-error-loss" class="level3">
 <h3 class="anchored" data-anchor-id="mean-squared-error-loss">Mean Squared Error Loss</h3>
-<p>Our goal for the loss function is to measure how closely the data fits the prediction made by our model. Intuitively, we should take the difference between the prediction and the true outcome <span class="math inline">\(f(x_i)-y_i\)</span>.</p>
-<p>The issue with this approach is that <span class="math inline">\(f(x_i)-y_i\)</span> can be small (negative) even when <span class="math inline">\(f(x_i) \neq y_i\)</span>. A natural fix is to take the absolute value <span class="math inline">\(|f(x_i) - y_i|\)</span>. The benefit is that the loss is <span class="math inline">\(0\)</span> if and only if <span class="math inline">\(f(x_i) = y_i\)</span>. However,</p>
-<p><span class="math inline">\(\mathcal{L}(w) = \frac1{n} \sum_{i=1}^n (f(x_i) - y_i)^2\)</span></p>
-<p>Mean squared error: differentiable everywhere, penalize errors that are really far, convex</p>
+<p>Our goal for the loss function is to measure how closely the data fits the prediction made by our model. Intuitively, we should take the difference between the prediction and the true outcome <span class="math inline">\(f(x^{(i)})-y^{(i)}\)</span>.</p>
+<p>The issue with this approach is that <span class="math inline">\(f(x^{(i)})-y^{(i)}\)</span> can be small (negative) even when <span class="math inline">\(f(x^{(i)}) \neq y^{(i)}\)</span>. A natural fix is to take the absolute value <span class="math inline">\(|f(x^{(i)}) - y^{(i)}|\)</span>. The benefit of the absolute value is that the loss is <span class="math inline">\(0\)</span> if and only if <span class="math inline">\(f(x^{(i)}) = y^{(i)}\)</span>. However, the absolute value function is not differentiable, which is a property we’ll need for optimization. Instead, we use the squared loss:</p>
+<p><span class="math inline">\(\mathcal{L}(w) = \frac1{n} \sum_{i=1}^n (f(x^{(i)}) - y^{(i)})^2\)</span></p>
+<p>Here, we use the mean squared error loss, which is the average squared difference between the prediction and the true output over the dataset. Unlike the absolute value function, the squared function is differentiable everywhere. In addition, the squared error penalizes predictions that are far from the true output even more.</p>
 <center>
 <img src="images/regression_losses.pdf" width="700">
 </center>
+<p>The plot above compares the squared function to the absolute value function. While both are <span class="math inline">\(0\)</span> if and only if their input is <span class="math inline">\(0\)</span>, the squared function is differentiable everywhere and penalizes large errors more.</p>
 </section>
 <section id="exact-optimization" class="level3">
 <h3 class="anchored" data-anchor-id="exact-optimization">Exact Optimization</h3>
-<p>Imagine data is fixed, how to change weights <span class="math inline">\(w\)</span>?</p>
-<p>So we will think of optimizing <span class="math inline">\(\mathcal{L}: \mathbb{R} \to \mathbb{R}\)</span></p>
-<p>Loss is convex, so only one minimum</p>
-<p>Set <span class="math inline">\(\frac{\partial \mathcal{L}}{\partial w}\)</span> to 0 and solve for <span class="math inline">\(w\)</span></p>
-<p>We will use the chain rule and the power rule to compute the derivative of <span class="math inline">\(\mathcal{L}\)</span></p>
+<p>We now have our model and loss function: the linear model and mean squared error loss. The question becomes how to update the weights of the model to minimize the loss. In particular, we want to find <span class="math inline">\(w\)</span> that minimizes <span class="math inline">\(\mathcal{L}(w)\)</span>. While the language we’re using is new, the problem is not. We’ve actually been studying how to do this since pre-calculus!</p>
+<p>The squared loss is convex (a bowl facing up versus the downward facing <em>cave</em> of con<em>cave</em>); see the plot above for a ‘proof’ by picture. In this case, we know there is only one minimum. Not only that but we can find the minimum by setting the derivative to <span class="math inline">\(0\)</span>!</p>
+<p>As such, our game plan is to set <span class="math inline">\(\frac{\partial \mathcal{L}}{\partial w}\)</span> to <span class="math inline">\(0\)</span> and solve for <span class="math inline">\(w\)</span>. Recall that <span class="math inline">\(f(x) = wx\)</span>. We will use the linearity of the derivative, the chain rule, and the power rule to compute the derivative of <span class="math inline">\(\mathcal{L}\)</span> with respect to <span class="math inline">\(w\)</span>:</p>
 <p><span class="math display">\[
 \frac{\partial}{\partial w}[\mathcal{L}(w)]
-= \frac1{n} \sum_{i=1}^n \frac{\partial}{\partial w} [(f(x_i) - y_i)^2]
-= \frac1{n} \sum_{i=1}^n 2(f(x_i) - y_i) \frac{\partial}{\partial w} [(f(x_i) - y_i)]
-= \frac1{n} \sum_{i=1}^n 2(w x_i - y_i) x_i
-\]</span> where the last equality follows because <span class="math inline">\(\frac{\partial}{\partial w} wx_i = x_i\)</span>.</p>
-<p>Setting the derivative to <span class="math inline">\(0\)</span> and solving for <span class="math inline">\(w\)</span>, we get <span class="math inline">\(\frac2{n} \sum_{i=1}^n w x_i^2 = \frac2{n} \sum_{i=1}^n y_i x_i\)</span> and so <span class="math display">\[
-w = \frac{\sum_{i=1}^n y_i}{\sum_{i=1}^n x_i^2}.
+= \frac1{n} \sum_{i=1}^n \frac{\partial}{\partial w} [(f(x^{(i)}) - y^{(i)})^2]
+= \frac1{n} \sum_{i=1}^n 2(f(x^{(i)}) - y^{(i)}) \frac{\partial}{\partial w} [(f(x^{(i)}) - y^{(i)})]
+= \frac1{n} \sum_{i=1}^n 2(w x^{(i)} - y^{(i)}) x^{(i)}.
 \]</span></p>
+<p>Setting the derivative to <span class="math inline">\(0\)</span> and solving for <span class="math inline">\(w\)</span>, we get <span class="math inline">\(\frac2{n} \sum_{i=1}^n w (x^{(i)})^2 = \frac2{n} \sum_{i=1}^n y^{(i)} x^{(i)}\)</span> and so <span class="math display">\[
+w = \frac{\sum_{i=1}^n y^{(i)}}{\sum_{i=1}^n (x^{(i)})^2}.
+\]</span></p>
+<p>This is the exact solution to the univariate linear regression problem! We can now use this formula to find the best linear model for our data. But we’re not done with linear regression yet. We assumed that the input was one-dimensional; however, we often have high-dimensional data.</p>
 </section>
 </section>
 <section id="multivariate-linear-regression" class="level2">
 <h2 class="anchored" data-anchor-id="multivariate-linear-regression">Multivariate Linear Regression</h2>
-<p>Recall our setting where we observe <span class="math inline">\(n\)</span> training observations <span class="math inline">\((\mathbf{x_1}, y_1), \ldots, (\mathbf{x_n}, y_n)\)</span>. In general, the data we are interested in is high-dimensional so <span class="math inline">\(\mathbf{x}_i \in \mathbb{R}^d\)</span> rather than the prior setting where <span class="math inline">\(x_i \in \mathbb{R}\)</span>.</p>
+<p>Consider the more general setting where the input is <span class="math inline">\(d\)</span>-dimensional. As before, we observe <span class="math inline">\(n\)</span> training observations <span class="math inline">\((\mathbf{x}^{(1)}, y^{(1)}), \ldots, (\mathbf{x}^{(n)}, y^{(n)})\)</span> but now <span class="math inline">\(\mathbf{x}^{(i)} \in \mathbb{R}^d\)</span>. We will generalize the ideas from univariate linear regression to the multivariate setting.</p>
 <section id="linear-model-1" class="level3">
 <h3 class="anchored" data-anchor-id="linear-model-1">Linear Model</h3>
 <p>Instead of using a single weight <span class="math inline">\(w \in \mathbb{R}\)</span>, we will use <span class="math inline">\(d\)</span> weights <span class="math inline">\(\mathbf{w} \in \mathbb{R}^d\)</span>. Then the model is given by <span class="math inline">\(f(x) = \mathbf{w} \cdot \mathbf{x}\)</span>.</p>
+<p>Instead of using a <em>line</em> to fit the data, we use a <em>hyperplane</em>. While visualizing the model is difficult in high dimensions, we can still see the model when <span class="math inline">\(d=2\)</span>.</p>
+<center>
+<img src="images/regression_2d.pdf" width="600">
+</center>
+<p>In the plot above, we have <span class="math inline">\(n=10\)</span> data points in 3 dimensions. There is one linear model <span class="math inline">\(f(\mathbf{x}) = \begin{bmatrix} 2 \\ \frac12 \end{bmatrix} \cdot \mathbf{x}\)</span> that closely approximates the data and another linear model <span class="math inline">\(f(\mathbf{x}) = \begin{bmatrix} \frac12 \\ 0 \end{bmatrix} \cdot \mathbf{x}\)</span> that does not approximate the data.</p>
 </section>
 <section id="mean-squared-error" class="level3">
 <h3 class="anchored" data-anchor-id="mean-squared-error">Mean Squared Error</h3>
-<p>Since the output of <span class="math inline">\(f\)</span> is still a single real number, we do not have to change the loss function.</p>
-<p>However, we will use our linear algebra notation to write the mean squared error in a fun way.</p>
-<p>Let <span class="math inline">\(\mathbf{X} \in \mathbb{R}^{n \times d}\)</span> be the data matrix where the <span class="math inline">\(i\)</span>th row is <span class="math inline">\(\mathbf{x}_i^\top\)</span>. Similarly, let <span class="math inline">\(\mathbf{y} \in \mathbf{R}^n\)</span> be the target vector where the <span class="math inline">\(i\)</span>th entry is <span class="math inline">\(y_i\)</span>.</p>
-<p>Then we can write the mean squared error loss as <span class="math inline">\(\mathcal{L}(\mathbf{w}) = \frac1{n} \| \mathbf{X w - y} \|_2^2\)</span>.</p>
+<p>Since the output of <span class="math inline">\(f\)</span> is still a single real number, we do not have to change the loss function. However, we can use our linear algebra notation to write the mean squared error in an elegant way.</p>
+<p>Let <span class="math inline">\(\mathbf{X} \in \mathbb{R}^{n \times d}\)</span> be the data matrix where the <span class="math inline">\(i\)</span>th row is <span class="math inline">\((\mathbf{x}^{(i)})^\top\)</span>. Similarly, let <span class="math inline">\(\mathbf{y} \in \mathbf{R}^n\)</span> be the target vector where the <span class="math inline">\(i\)</span>th entry is <span class="math inline">\(y^{(i)}\)</span>. We can write the mean squared error loss as <span class="math display">\[
+\mathcal{L}(\mathbf{w}) = \frac1{n} \| \mathbf{X w - y} \|_2^2.
+\]</span></p>
 </section>
 <section id="exact-optimization-1" class="level3">
 <h3 class="anchored" data-anchor-id="exact-optimization-1">Exact Optimization</h3>
-<p>Just like computing the derivative and setting it to <span class="math inline">\(0\)</span>, we can compute the gradient and set it to <span class="math inline">\(\mathbf{0} \in \mathbb{R}^d\)</span>. In mathematical notation, we will set <span class="math inline">\(\nabla_\mathbf{w} \mathcal{L}(\mathbf{w}) = \mathbf{0}\)</span> and solve for <span class="math inline">\(\mathbf{w}\)</span>.</p>
+<p>Just like computing the derivative and setting it to <span class="math inline">\(0\)</span>, we can compute the gradient and set it to the zero vector <span class="math inline">\(\mathbf{0} \in \mathbb{R}^d\)</span>. In mathematical notation, we will set <span class="math inline">\(\nabla_\mathbf{w} \mathcal{L}(\mathbf{w}) = \mathbf{0}\)</span> and solve for <span class="math inline">\(\mathbf{w}\)</span>.</p>
+<p>We will leave this as an exercise on the homework. The final solution is that <span class="math inline">\(\mathbf{w} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}\)</span>.</p>
+<p>This is the exact solution to the multivariate linear regression problem!</p>
 </section>
 </section>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Powered by repeated innovations in chip manufacturing, computers have grown exponentially more powerful over the last several decades. As a result, we have access to unparalleled computational resources and data. For example, a <a href="https://www.earthdata.nasa.gov/learn/articles/swot-calibration-validation">single NASA satellite</a> collects 20 terabytes of satellite images, more than 8 billion <a href="https://fitsmallbusiness.com/google-search-statistics/">searches</a> are made on Google, and <a href="https://explodingtopics.com/blog/data-generated-per-day">estimates</a> suggest the internet creates more than 300 million terabytes of data <em>every single day</em>. Simultaneously, we are quickly approaching the physical limit of how many transistors can be packed on a single chip. In order to learn from the data we have and continue expanding our computational abilities into the future, fast and efficient algorithms are more important than ever.</p>
-<p>At first glance, an algorithm that performs only a few operations per item in our data set is efficient. However, these algorithms can be too slow when we have lots and lots of data. Instead, we turn to randomized algorithms that can run even faster. Randomized algorithms typically exploit some source of randomness to run on only a small part of the data set (or use only a small amount of space) while still returning an <em>approximately</em> correct result.</p>
-<p>We can run randomized algorithms in practice to see how well they work. But we also want to <em>prove</em> that they work and understand why. Today, we will solve a problem using randomized algorithms. Before we get to the problems and algorithms, we’ll build some helpful probability tools.</p>
-<section id="probability-background" class="level3">
-<h3 class="anchored" data-anchor-id="probability-background">Probability Background</h3>
-<p>Consider a random variable <span class="math inline">\(X\)</span>. For example, <span class="math inline">\(X\)</span> could be the outcome of a fair dice roll and be equal to <span class="math inline">\(1,2,3,4,5\)</span> or <span class="math inline">\(6\)</span>, each with probability <span class="math inline">\(\frac{1}{6}\)</span>. Formally, we use <span class="math inline">\(\Pr(X=x)\)</span> to represent the probability that the random variable <span class="math inline">\(X\)</span> is equal to the outcome <span class="math inline">\(x\)</span>. The expectation of a discrete random variable is <span class="math display">\[
-\mathbb{E}[X] = \sum_{x} x \Pr(X=x).
-\]</span> For example, the expected outcome of a fair dice roll is <span class="math inline">\(\mathbb{E}[X] = 1 \times \frac{1}{6} + 2 \times \frac{1}{6} + 3 \times \frac{1}{6} +
-4 \times \frac{1}{6} + 5 \times \frac{1}{6} + 6 \times \frac{1}{6} = \frac{21}{6}\)</span>. Note: If the random variable is continuous, we can similarly define its expected value using an integral.</p>
-<p>The expected value tells us where the random variable is on average but we’re also interested in how closely the random variable concentrates around its expectation. The variance of a random variable is <span class="math display">\[
-\textrm{Var}[X] = \mathbb{E}\left[(X - \mathbb{E}[X])^2\right].
-\]</span> Notice that the variance is larger when the random variable is often far from its expectation. In the figure below, can you identify the expected value for each of the three distributions? Which distribution has the largest variance? Which has the smallest?</p>
-<center>
-<img src="images/distributions.png" width="800">
-</center>
-<p>There are a number of useful facts about the expected value and variance. For example,</p>
-<p><span class="math display">\[
-\mathbb{E}[\alpha X] = \alpha \mathbb{E}[X]
-\hspace{1em} \textrm{and} \hspace{1em}
-\textrm{Var}(\alpha X) = \alpha^2 \textrm{Var}(X)
-\]</span> where <span class="math inline">\(\alpha \in \mathbb{R}\)</span> is a real number. To see this, observe that <span class="math display">\[
-\mathbb{E}[\alpha X] = \sum_{x} \alpha x \Pr(X=x)
-= \alpha \sum_{x} x \Pr(X=x) = \alpha \mathbb{E}[X]
-\]</span> and <span class="math display">\[
-\textrm{Var}(\alpha X) = \sum_x (\alpha x - \alpha \mathbb{E}[X])^2 = \alpha^2 \sum_x ( x -  \mathbb{E}[X])^2
-= \alpha^2 \textrm{Var}(X).
-\]</span></p>
-</section>
-<section id="independent-random-variables" class="level3">
-<h3 class="anchored" data-anchor-id="independent-random-variables">Independent Random Variables</h3>
-<p>Once we have defined random variables, we are often interested in events defined on their outcomes. Let <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> be two events. For example, <span class="math inline">\(A\)</span> could be the event that the dice shows <span class="math inline">\(1\)</span> or <span class="math inline">\(2\)</span> while <span class="math inline">\(B\)</span> could be the event that the dice shows an odd number. We use <span class="math inline">\(\Pr(A \cap B)\)</span> to denote the probability that events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> both happen. Often, we have information about one event and want to see how that changes the probability of another event. We use <span class="math inline">\(\Pr(A | B)\)</span> to denote the conditional probability of event <span class="math inline">\(A\)</span> given that <span class="math inline">\(B\)</span> happened. We define</p>
-<p><span class="math display">\[
-\Pr(A | B) = \frac{\Pr(A \cap B)}{\Pr(B)}.
-\]</span></p>
-<p>If information about event <span class="math inline">\(B\)</span> does not give us information about event <span class="math inline">\(A\)</span>, we say that <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent. Formally, events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent if <span class="math inline">\(\Pr(A|B) = \Pr(A)\)</span>. By the definition of conditional probability, an equivalent definition of independence is <span class="math inline">\(\Pr(A \cap B) = \Pr(A) \Pr(B)\)</span>.</p>
-<p>Let’s figure out whether the event <span class="math inline">\(A\)</span> that the dice shows 1 or 2 is independent of the event <span class="math inline">\(B\)</span> that the dice shows an odd number. Well, <span class="math inline">\(\Pr(A \cap B) = \frac{1}{6}\)</span> since the only outcome that satisfy both events is when the dice shows a 1. We also know that <span class="math inline">\(\Pr(A) \Pr(B) = \frac{2}{6} \times \frac{3}{6} = \frac{1}{6}\)</span>. So, by the second definition of independence, we can conclude that <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent.</p>
-<p>We’ve been talking about events defined on random variables, but we’ll also be interested in when random variables are independent. Consider random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. We say that <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent if, for all outcomes <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, <span class="math inline">\(\Pr(X=x \cap Y=y) = \Pr(X=x) \Pr(Y=y)\)</span>.</p>
-</section>
-<section id="linearity-of-expectation" class="level3">
-<h3 class="anchored" data-anchor-id="linearity-of-expectation">Linearity of Expectation</h3>
-<p>One of the most powerful theorems in all of probability is the linearity of expectation.</p>
-<p><strong>Theorem:</strong> Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> be random variables. Then <span class="math display">\[
-\mathbb{E}[X+Y] = \mathbb{E}[X] + \mathbb{E}[Y].
-\]</span> The result is a powerful tool that requires <em>no assumptions</em> on the random variables.</p>
-<p><strong>Proof:</strong> Observe that <span class="math display">\[
-\mathbb{E}[X+Y] = \sum_{x,y}(x+y) \Pr(X=x \cap Y=y)
-\]</span> Now, we’ll separate the equation into two terms and factor out the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> terms, respectively. <span class="math display">\[
-= \sum_x x \sum_y \Pr(X=x \cap Y=y)
-+ \sum_y y \sum_x \Pr(X=x \cap Y=y)
-\]</span> Finally, using the law of total probability, we have <span class="math display">\[
-= \sum_x x \Pr(X=x) + \sum_y y \Pr(Y=y) = \mathbb{E}[X] + \mathbb{E}[Y].
-\]</span></p>
-<p>There are also several other useful facts about the expected value and variance.</p>
-<p><strong>Fact 1:</strong> When <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, <span class="math inline">\(\mathbb{E}[XY] = \mathbb{E}[X] \mathbb{E}[Y]\)</span>.</p>
-<p><strong>Proof:</strong> Observe that <span class="math display">\[
-\mathbb{E}[XY] = \sum_{x,y} xy \Pr(X=x \cap Y=y)
-= \sum_{x,y} xy \Pr(X=x) \Pr(Y=y)
-\]</span></p>
-<p><span class="math display">\[
-= \sum_x x \Pr(X=x) \sum_y y \Pr(Y=y)
-= \mathbb{E}[X] \mathbb{E}[Y]
-\]</span> where the second equality followed by the assumption that <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent.</p>
-<p><strong>Fact 2:</strong> Consider a random variable <span class="math inline">\(X\)</span>. Then <span class="math inline">\(\textrm{Var}(X) = \mathbb{E}[X^2] - \mathbb{E}[X]^2\)</span>.</p>
-<p><strong>Proof:</strong> Observe that <span class="math display">\[
-\textrm{Var}(X) =
-\mathbb{E}[(X-\mathbb{E}[X])^2]
-\]</span> <span class="math display">\[
-= \mathbb{E}[X^2 - 2 X \mathbb{E}[X] + \mathbb{E}[X]^2]
-= \mathbb{E}[X^2] - \mathbb{E}[X]^2
-\]</span> where the first equality is by definition, the second equality is by foiling, and the third equality is by linearity of expectation and the observation that <span class="math inline">\(\mathbb{E}[X]\)</span> is a scaler.</p>
-<p><strong>Fact 3:</strong> When <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, <span class="math inline">\(\textrm{Var}(X+Y) = \textrm{Var}(X) + \textrm{Var}(Y)\)</span>.</p>
-<p><strong>Proof:</strong> Observe that</p>
-<p><span class="math display">\[\begin{align*}
-\textrm{Var}(X+Y) &amp;= \mathbb{E}\left[(X + Y - \mathbb{E}[X] - \mathbb{E}[Y])^2\right] \\
-&amp;= \mathbb{E}\left[(X- \mathbb{E}[X])^2 + 2(X-\mathbb{E}[X])(Y-\mathbb{E}[Y]) + (Y-\mathbb{E})^2\right] \\
-&amp;= \textrm{Var}(X) + 2\mathbb{E}[(X-\mathbb{E}[X])(Y-\mathbb{E}[Y])]+ \textrm{Var}(Y).
-\end{align*}\]</span> Then, when <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, <span class="math display">\[
-\mathbb{E}[(X-\mathbb{E}[X])(Y-\mathbb{E}[Y])]
-= \mathbb{E}[XY - \mathbb{E}[X]Y - X\mathbb{E}[Y] + \mathbb{E}[X]\mathbb{E}[Y]] = 0
-\]</span> where the last equality follows by Fact 1 when <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent.</p>
-</section>
-</section>
-<section id="set-size-estimation" class="level2">
-<h2 class="anchored" data-anchor-id="set-size-estimation">Set Size Estimation</h2>
-<p>We’ll pose a problem that has applications in ecology, social networks, and internet indexing. However, while efficiently solving the problem is useful, our purpose is really to gain familiarity with linearity of expectation and learn Markov’s inequality.</p>
-<p>Suppose you run a website that is considering contracting with a company to provide CAPTCHAs for login verification. The company claims to have a database with <span class="math inline">\(n=1000000\)</span> unique CAPTCHAs. For each API call, they’ll return a CAPTCHA chosen uniformly at random from their database. Here’s our problem: How many queries <span class="math inline">\(m\)</span> do we need to make to their API until we can independently verify that they do in fact have a million CAPTCHAs?</p>
-<p>An obvious approach is to keep calling ther API until we find a million unique CAPTCHAs. Of course, the issue is that we have to make at least a million API calls. That’s not so good if we care about efficiency, they charge us per call, or the size they claim to have in their database is much bigger than a million.</p>
-<p>A more clever approach is to call their API and count duplicates. Intuitively, the larger their database, the fewer duplicates we expect to see. Define a random variable <span class="math inline">\(D_{i,j}\)</span> which is 1 if the <span class="math inline">\(i\)</span>th and <span class="math inline">\(j\)</span>th calls return the same CAPTCHA and 0 otherwise. (To avoid double counting, we’ll assume <span class="math inline">\(i &lt; j\)</span>.) For example, in the figure below, the <span class="math inline">\(5\)</span>th, <span class="math inline">\(6\)</span>th, and <span class="math inline">\(7\)</span>th calls returned the same CAPTCHA so <span class="math inline">\(D_{5,6}\)</span>, <span class="math inline">\(D_{5,7}\)</span>, and <span class="math inline">\(D_{6,7}\)</span> are all 1.</p>
-<center>
-<img src="images/duplicates.png" width="800">
-</center>
-<p>When a random variable can only be 0 or 1, we call it an <em>indicator</em> random variable. Indicator random variables have the special property that their expected value is the probability they are 1. We can define the total number of duplicates <span class="math inline">\(D\)</span> in terms of our indicator random variables <span class="math inline">\(D_{i,j}\)</span>.</p>
-<p><span class="math display">\[
-D = \sum_{\substack{i, j \in \{1, \ldots, m\} \\ i &lt; j }} D_{i,j}
-\]</span></p>
-<p>We can calculate the expected number of duplicates using linearity of expectation.</p>
-<p><span class="math display">\[
-\mathbb{E}[D] = \sum_{\substack{i, j \in \{1, \ldots, m\} \\ i &lt; j }} \mathbb{E}[D_{i,j}]
-\]</span></p>
-<p>Since <span class="math inline">\(D_{i,j}\)</span> is an indicator random variable, we know <span class="math inline">\(\mathbb{E}[D_{i,j}]\)</span> is the probability the <span class="math inline">\(i\)</span>th and <span class="math inline">\(j\)</span>th CAPTCHA are the same. Since each API call is a uniform and independent sample from the database, the probability the <span class="math inline">\(j\)</span>th CAPTCHA is the same as the <span class="math inline">\(i\)</span>th is <span class="math inline">\(\frac{1}{n}\)</span>. With this observation in hand,</p>
-<p><span class="math display">\[
-\mathbb{E}[D] = \sum_{\substack{i, j \in \{1, \ldots, m\} \\ i &lt; j }} \frac{1}{n}
-= \binom{m}{2} \frac{1}{n} = \frac{m(m-1)}{2n}.
-\]</span></p>
-<p>Suppose we take <span class="math inline">\(m=1000\)</span> queries and see <span class="math inline">\(D=10\)</span> duplicates. How does this compare to what we would expect if the database had <span class="math inline">\(n=1000000\)</span> CAPTCHAs?</p>
-<p>Well, the expectation would be <span class="math inline">\(\mathbb{E}[D] = \frac{1000 \times 999}{2 \times 1000000} = .4995\)</span>. Something seems wrong… we observed many more duplicates than we expect. Can we formalize this intuition?</p>
-<section id="markovs-inequality" class="level3">
-<h3 class="anchored" data-anchor-id="markovs-inequality">Markov’s Inequality</h3>
-<p>Concentration inequalities are a powerful tool in the analysis of randomized algorithms. They tell us how likely it is that a random variable differs from its expectation.</p>
-<p>There are many concentration inequalities. Some apply in general and some apply only under special assumptions. The concentration inequalities that apply only under special assumptions tend to give stronger results. We’ll start with one of the most simple and general concentration inequalities.</p>
-<p><strong>Theorem</strong>: For any non-negative random variable <span class="math inline">\(X\)</span> and any positive threshold <span class="math inline">\(t\)</span>, <span class="math display">\[
-\Pr(X \geq t) \leq \frac{\mathbb{E}[X]}{t}.
-\]</span></p>
-<p><strong>Proof:</strong> We’ll prove the inequality directly. By the definition of expectation, we have <span class="math display">\[
-\mathbb{E}[X] = \sum_{x} x \Pr(X=x)
-= \sum_{\substack{x \\ x \geq t}} x \Pr(X=x) +
-\sum_{\substack{x \\ x &lt; t}} x \Pr(X=x)
-\]</span> <span class="math display">\[
-\geq \sum_{\substack{x \\ x \geq t}} t \Pr(X=x) + 0
-= t \Pr(X \geq t).
-\]</span> Rearranging the above inequality gives Markov’s. Can you see where we used that all outcomes <span class="math inline">\(x\)</span> are non-negative?</p>
-<p>Now let’s apply Markov’s inequality to our set size estimation problem. Since the number of duplicates <span class="math inline">\(D\)</span> is always positive, we satisfy the assumption of the inequality. <span class="math display">\[
-\Pr(D \geq 10 ) \leq \frac{\mathbb{E}[D]}{10} = \frac{.4995}{10} = .04995
-\]</span> The probability of observing the 10 duplicates is less than <span class="math inline">\(5\%\)</span>! We should probably start asking the CAPTCHA company some questions.</p>
-<p>In practice, many of the set size estimation problems are slightly different. Instead of checking a claim about the set size, we want to estimate the set size directly. Notice that we computed <span class="math inline">\(\mathbb{E}[D] = \frac{m(m-1)}{2n}\)</span>. Rearranging, we see that <span class="math inline">\(n = \frac{m(m-1)}{2\mathbb{E}[D]}\)</span>. Given <span class="math inline">\(m\)</span> samples, we can naturally build an estimator for the whole set size using the empirical number of duplicates we found in the sample. With a little more work, we can show the following.</p>
-<p><strong>Claim</strong>: If we make <span class="math inline">\(m \geq c \frac{\sqrt{n}}{\epsilon}\)</span> samples for a particular constant <span class="math inline">\(c\)</span>, then the estimate <span class="math inline">\(\hat{n} = \frac{m(m-1)}{2D}\)</span> satisfies <span class="math inline">\((1-\epsilon) n \leq \hat{n} \leq (1+\epsilon) n\)</span> with probability <span class="math inline">\(9/10\)</span>.</p>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>We’ve learned about the basic building blocks of machine learning and used them to understand linear regression. We’ve seen how to define the model, loss, and optimizer. We’ve also seen how to solve the linear regression problem in both the univariate and multivariate settings.</p>
+<p>There are two big questions that our discussion of linear regression raises:</p>
+<ol type="1">
+<li><p>What if the data does not have a linear relationship?</p></li>
+<li><p>What happens when our model is too complex to solve for the exact solution?</p></li>
+</ol>
+<p>We will answer these questions in future lectures as we explore logistic regression, neural networks, and gradient descent.</p>
 
 
-</section>
+
 </section>
 
 </main> <!-- /main -->

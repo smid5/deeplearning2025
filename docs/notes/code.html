@@ -196,28 +196,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="cell-2" class="cell" data-execution_count="112">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="linear-regression-figures" class="level4">
 <h4 class="anchored" data-anchor-id="linear-regression-figures">Linear Regression Figures</h4>
-<div id="cell-4" class="cell" data-execution_count="113">
+<div id="cell-4" class="cell" data-execution_count="121">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">1234</span>) <span class="co"># Seed randomness</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10</span> <span class="co"># Number of observations</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> <span class="dv">2</span> <span class="co"># True parameter</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.random.rand(n) <span class="co"># x-values</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> X.dot(w).T <span class="op">+</span> np.random.normal(size<span class="op">=</span>n) <span class="op">*</span> <span class="fl">.2</span> <span class="co">#y-values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> X.dot(w).T <span class="op">+</span> np.random.normal(size<span class="op">=</span>n) <span class="op">*</span> <span class="fl">.2</span> <span class="co">#y-values</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>plt.scatter(X,y, color<span class="op">=</span><span class="st">'black'</span>, label<span class="op">=</span><span class="vs">r'Data: $(x^{(i)}, y^{(i)})$'</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r'$x$'</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'$y$'</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>xaxis <span class="op">=</span> np.arange(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">.01</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.plot(xaxis, xaxis<span class="op">*</span><span class="fl">.5</span>, label<span class="op">=</span><span class="vs">r'Line: $f(x) = .5x$'</span>, color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>plt.plot(xaxis, xaxis<span class="op">*</span>w, label<span class="op">=</span><span class="vs">r'Line: $f(x) = 2x$'</span>, color<span class="op">=</span><span class="st">'green'</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="vs">r'Linear Regression in $\mathbb</span><span class="sc">{R}</span><span class="vs">^1$'</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'images/regression_1d.pdf'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="code_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
-<div id="cell-5" class="cell" data-execution_count="114">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(X,y, color<span class="op">=</span><span class="st">'black'</span>, label<span class="op">=</span><span class="vs">r'Data: $(x_i, y_i)$'</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r'$x$'</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'$y$'</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>xaxis <span class="op">=</span> np.arange(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">.01</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>plt.plot(xaxis, xaxis<span class="op">*</span><span class="fl">.5</span>, label<span class="op">=</span><span class="vs">r'Line: $f(x) = .5x$'</span>, color<span class="op">=</span><span class="st">'red'</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.plot(xaxis, xaxis<span class="op">*</span>w, label<span class="op">=</span><span class="vs">r'Line: $f(x) = 2x$'</span>, color<span class="op">=</span><span class="st">'green'</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="vs">r'Linear Regression in $\mathbb</span><span class="sc">{R}</span><span class="vs">^1$'</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'images/regression_1d.pdf'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="cell-5" class="cell" data-execution_count="115">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r'$z$'</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'$\mathcal</span><span class="sc">{L}</span><span class="vs">(z)$'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>xaxis <span class="op">=</span> np.arange(<span class="op">-</span><span class="fl">1.5</span>,<span class="fl">1.5</span>,<span class="fl">.001</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>plt.plot(xaxis, xaxis<span class="op">**</span><span class="dv">2</span>, label<span class="op">=</span><span class="vs">r'Squared Loss: $\mathcal</span><span class="sc">{L}</span><span class="vs">(z)=z^2$'</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>plt.plot(xaxis, np.<span class="bu">abs</span>(xaxis), label<span class="op">=</span><span class="vs">r'Absolute Loss: $\mathcal</span><span class="sc">{L}</span><span class="vs">(z)=|z|$'</span>, color<span class="op">=</span><span class="st">'purple'</span>, linestyle<span class="op">=</span><span class="st">'dotted'</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="vs">r'Squared and Absolute Losses'</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'images/regression_losses.pdf'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -226,15 +243,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="cell-6" class="cell" data-execution_count="115">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r'$z$'</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r'$\mathcal</span><span class="sc">{L}</span><span class="vs">(z)$'</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>xaxis <span class="op">=</span> np.arange(<span class="op">-</span><span class="fl">1.5</span>,<span class="fl">1.5</span>,<span class="fl">.001</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>plt.plot(xaxis, xaxis<span class="op">**</span><span class="dv">2</span>, label<span class="op">=</span><span class="vs">r'Squared Loss: $\mathcal</span><span class="sc">{L}</span><span class="vs">(z)=z^2$'</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>plt.plot(xaxis, np.<span class="bu">abs</span>(xaxis), label<span class="op">=</span><span class="vs">r'Absolute Loss: $\mathcal</span><span class="sc">{L}</span><span class="vs">(z)=|z|$'</span>, color<span class="op">=</span><span class="st">'purple'</span>, linestyle<span class="op">=</span><span class="st">'dotted'</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="vs">r'Squared and Absolute Losses'</span>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'images/regression_losses.pdf'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-6" class="cell" data-execution_count="159">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3D version of this plot</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">1234</span>) <span class="co"># Seed randomness</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10</span> <span class="co"># Number of observations</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> np.array([<span class="dv">2</span>, <span class="fl">.5</span>]) <span class="co"># True parameter</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.random.rand(n, <span class="dv">2</span>) <span class="co"># x-values</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> X.dot(w).T <span class="op">+</span> np.random.normal(size<span class="op">=</span>n) <span class="op">*</span> <span class="fl">.1</span> <span class="co">#y-values</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> fig.add_subplot(<span class="dv">111</span>, projection<span class="op">=</span><span class="st">'3d'</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>ax.scatter(X[:,<span class="dv">1</span>], X[:,<span class="dv">1</span>], y, color<span class="op">=</span><span class="st">'black'</span>, label<span class="op">=</span><span class="vs">r'Data: $(x_1^{(i)}, x_2^{(i)}, y^{(i)})$'</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Hyperplane 1</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> np.arange(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">.01</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> np.arange(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">.01</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>X1, X2 <span class="op">=</span> np.meshgrid(x1, x2)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> w[<span class="dv">0</span>]<span class="op">*</span>X1 <span class="op">+</span> w[<span class="dv">1</span>]<span class="op">*</span>X2</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>ax.plot_surface(X1, X2, Z, alpha<span class="op">=</span><span class="fl">.5</span>, color<span class="op">=</span><span class="st">'green'</span>, label<span class="op">=</span><span class="vs">r'Hyperplane: $f(x) = 2x_1 + .5x_2$'</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Hyperplane 2</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>ax.plot_surface(X1, X2, <span class="fl">.5</span><span class="op">*</span>X1<span class="op">+</span><span class="dv">0</span><span class="op">*</span>X2, alpha<span class="op">=</span><span class="fl">.5</span>, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="vs">r'Hyperplane: $f(x) = .5x_1 + 0x_2 $'</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r'$x_1$'</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="vs">r'$x_2$'</span>)</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Add label to the z-axis</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>ax.set_zlabel(<span class="vs">r'$y$'</span>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="vs">r'Linear Regression in $\mathbb</span><span class="sc">{R}</span><span class="vs">^2$'</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">'upper left'</span>, framealpha<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">'images/regression_2d.pdf'</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
