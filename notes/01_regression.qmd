@@ -1,17 +1,220 @@
 ---
-title: "**Set Size Estimation**"
-header-includes:
-  - \usepackage{amsbsy}
-output:
-  html_document:
-    mathjax: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+title: "**Linear Regression and Mean Squared Error**"
+format:
+  html:
     toc: true
-    toc_float:
-      collapsed: false
-      smooth_scroll: false
-    includes:
-      in_header: header.html
 ---
+
+## Math Review
+
+When I first heard about ''machine learning'', I imagined a machine that was rewarded every time it gave the right answer. Maybe there were electric carrots and sticks that no one had bothered to tell me about? While I now know about as little as I did then about computer hardware, I have learned machine learning is fundamentally a mathematical process.
+
+The truth is that all the 'magic' lies in optimization and math. Luckily, you've been learning about these very ideas for years! We'll review the concepts and then jump in to machine learning through the example of linear regression.
+
+### Derivatives
+
+Imagine a function $\ell: \mathbb{R} \to \mathbb{R}$.
+This notation means it takes a single real number as input and outputs a single real number.
+In general, we should be careful about whether we can even differentiate a function but, we're computer scientists so we'll just risk it for the biscuit.
+
+The derivative of $\ell$ with respect to its input $z$ we'll denote by $\frac{\partial}{\partial z}[\ell(z)]$.
+
+Formally, the derivative is defined as
+$$
+\frac{\partial}{\partial z}[\ell(z)]
+= \lim_{h \to 0} \frac{\ell(z + h) - \ell(z)}{h}.
+$$
+This is just the slope of a line and you've been learning about it for ages.
+
+For example, we know that for $\ell(z) = z^a + b$, the derivative $\frac{\partial}{\partial z}[\ell(z)] = a z^{a-1}$ by the power rule.
+
+We also know more fancy rules like that for $\ell(z) = \ln (z)$, the derivative $\frac{\partial}{\partial z}[\ell(z)] = \frac1{z}$.
+
+### Chain Rule and Product Rule
+
+While the basic operations are nice, we're not always so lucky. Modern machine learning chains many many complicated functions together.
+Fortunately, we will think of these functions modularly.
+
+Let $g: \mathbb{R} \to \mathbb{R}$ be another function.
+Consider the compositive function $g(\ell(z))$.
+
+By the chain rule, the derivative 
+$$
+\frac{\partial }{\partial z}[g(\ell(z))]
+= \frac{\partial g}{\partial z}(\ell(z))
+\frac{\partial}{\partial z}[\ell(z)].
+$$
+
+Often, we will also multiply functions together.
+The product rule tells us that
+$$
+\frac{\partial }{\partial z}[g(z) \ell(z)]
+= g(z) \frac{\partial}{\partial z}[\ell(z)]
++ \ell(z) \frac{\partial}{\partial z}[g(z)].
+$$
+
+### Gradients
+
+In machine learning, we process lots of data.
+So the functions we consider generally have multivariate input.
+Consider $\ell: \mathbb{R}^d \to \mathbb{R}$.
+Now, the output of the function is still a real number but the input consists of $d$ real numbers.
+
+With multivariate functions, we will talk about the partial derivative with respect to each one of the inputs $z_1, \ldots, z_d$.
+We will use the vector $\mathbf{z} \in \mathbb{R}^d$ to represent all $d$ inputs.
+The partial derivative with respect to $z_i$ is denoted by $\frac{\partial}{\partial z_i}[\ell(\mathbf{z})]$ and treats all the variables $z_j$ for $j \neq i$ as constant.
+
+The gradient of $\ell$ with respect to the input $\mathbf{z}$ is the vector $\nabla_{\mathbf{z}} \ell$.
+The $i$th entry of this vector is given by the partial derivative of $\ell$ with respect to $z_i$.
+In mathematical notation,
+$$
+\nabla_\mathbf{z} \ell = \begin{cases} \frac{\partial}{\partial z_1}[\ell(\mathbf{z})] \\ \vdots \\ \frac{\partial}{\partial z_d}[\ell(\mathbf{z})] \\ \end{cases}
+$$
+
+Just like the derivative in one dimension, the gradient gives contains information about the slope of $\ell$ with respect to each of the $d$ dimensions.
+
+### Vector and Matrix Multiplication
+
+Consider two vectors $\mathbf{u} \in \mathbb{R}^d$ and $\mathbf{v} \in \mathbb{R}^d$.
+We will use $\mathbf{u} \cdot \mathbf{v} = \sum_{i=1}^d u_i v_i$ to denote the inner product of $\mathbf{u}$ and $\mathbf{v}$.
+The $\ell_2$-norm of $v$ is given by $\|\mathbf{v}\|_2 = \sqrt{\mathbf{u} \cdot \mathbf{u}}$.
+
+Matrix multiplication lives at the heart of deep learning.
+In fact, deep learning really started to take off when researchers realized that the Graphical Processing Unit (GPU) could be used to perform gradient updates in addition to the matrix multiplication it was designed to do for gaming.
+
+Consider two matrices: $\mathbf{A} \in \mathbb{R}^{d \times m}$ and $\mathbf{B} \in \mathbb{R}^{m \times n}$ where $d \neq n$.
+
+We can only multiply two matrices when their *inner* dimension agrees.
+Because the number of columns in $\mathbf{A}$ is the same as the number of rows in $\mathbf{B}$, we can compute $\mathbf{AB}$.
+However, because the number of columns in $\mathbf{B}$ is not the same as the number of rows in $\mathbf{A}$, the product is $\mathbf{BA}$ is not defined.
+
+When we can multiply two matrices, the $(i,j)$ entry in $\mathbf{AB}$ is given by the inner product between the $i$th row of $\mathbf{A}$ and the $j$th column of $\mathbf{B}$.
+The resulting dimensions of the matrix product will be the number of rows in $\mathbf{A}$ by the number of columns in $\mathbf{B}$.
+
+### Inverse Matrices
+
+If we have a scalar equation $ax = b$, we can simply solve for $x$ by dividing both sides by $a$.
+In effect, we are applying the inverse of $a$ to $a$ since $\frac1{a} a =1$.
+The same principle applies to matrices.
+For matrices, the $n \times n$ identity matrix generalizes the scalar $1$. The identity matrix is denoted by $\mathbf{I}_{n \times n} \in \mathbb{R}^{n \times n}$:
+the on-diagonal entries $(i,i)$ are 1 while the off-diagonal entries $(i,j)$ for $i\neq j$ are 0.
+
+Suppose we have the equation $\mathbf{Ax} = \mathbf{b}$ where $\mathbf{A} \in \mathbb{R}^{d \times d}$, $\mathbf{x} \in \mathbb{R}^d$, and $\mathbf{b} \in \mathbb{R}^d$.
+(Notice that the inner dimensions of $\mathbf{A}$ and $\mathbf{x}$ agree so their multiplication is well-defined, and the resulting vector is the same dimension as $\mathbf{b}$.)
+
+If we want to solve for $\mathbf{x}$, we can use the same inverse idea.
+For a matrix $\mathbf{A}$, we use $\mathbf{A}^{-1}$ to denote its inverse.
+The inverse is defined so that $\mathbf{A}^{-1} \mathbf{A} = \mathbf{I}_{n \times n}$ where $\mathbf{I}_{n \times n}$ is the identity matrix.
+
+## Linear Regression
+
+### Goal
+
+We will begin the course in the supervised learning setting.
+In this setting, we are given labelled data with input features and an outcome.
+Formally, we will have $n$ labelled observations $(x_1, y_1), (x_2, y_2), \ldots (x_n, y_n)$.
+In general, we will have $y \in \mathbb{R}$.
+For simplicity, we will assume for now that $x \in \mathbb{R}$.
+
+Our goal is to process the data and learn a function that approximates the outcomes.
+In mathematical notation,
+we want to learn a function $f: \mathbb{R} \to \mathbb{R}$ so that $f(x_i) \approx y_i$ for the labelled observations.
+
+Before we dive into the specific way we will accomplish this with linear regression, let's discuss the general deep learning framework.
+This three-step framework gives a flexible scaffolding that we will use to understand almost every topic in this course.
+
+The three-Step framework includes:
+
+• **Model:** The function that we'll use to process the input and produce a corresponding output.
+
+• **Loss:** The function that measures the quality of the outputs from our model. (Without loss of generality, we will assume that lower is better.)
+
+• **Optimizer:** The method of updating the model to improve the loss.
+
+### Linear Model
+
+With these general concepts in mind, we'll explore linear regression.
+As its name suggests, linear regression uses a linear model to process the input and approximate the output.
+
+Let $w \in \mathbb{R}$ be a weight parameter.
+The linear model (for one-dimensional inputs) is given by $f(x) = wx$.
+
+Unlike many deep learning models, we can visualize the linear model since it is given by a line.
+In the plot, we have the $n=10$ data points plotted in 2 dimensions.
+There is one linear model $f(x) = 2x$ that closely approximates the data and another linear model $f(x)=\frac12 x$ that does not approximate the data.
+
+<center><img src="images/regression_1d.pdf" width="700"></center>
+
+Our goal is to learn how to find a linear model that fits the data well.
+Before we can do this though, we need to figure out how to measure how well the line fits the data.
+
+### Mean Squared Error Loss
+
+Our goal for the loss function is to measure how closely the data fits the prediction made by our model.
+Intuitively, we should take the difference between the prediction and the true outcome $f(x_i)-y_i$.
+
+The issue with this approach is that $f(x_i)-y_i$ can be small (negative) even when $f(x_i) \neq y_i$.
+A natural fix is to take the absolute value $|f(x_i) - y_i|$. The benefit is that the loss is $0$ if and only if $f(x_i) = y_i$.
+However,
+
+$\mathcal{L}(w) = \frac1{n} \sum_{i=1}^n (f(x_i) - y_i)^2$
+
+Mean squared error: differentiable everywhere, penalize errors that are really far, convex
+
+<center><img src="images/regression_losses.pdf" width="700"></center>
+
+### Exact Optimization
+
+Imagine data is fixed, how to change weights $w$?
+
+So we will think of optimizing $\mathcal{L}: \mathbb{R} \to \mathbb{R}$ 
+
+Loss is convex, so only one minimum
+
+Set $\frac{\partial \mathcal{L}}{\partial w}$ to 0 and solve for $w$
+
+We will use the chain rule and the power rule to compute the derivative of $\mathcal{L}$
+
+$$
+\frac{\partial}{\partial w}[\mathcal{L}(w)]
+= \frac1{n} \sum_{i=1}^n \frac{\partial}{\partial w} [(f(x_i) - y_i)^2]
+= \frac1{n} \sum_{i=1}^n 2(f(x_i) - y_i) \frac{\partial}{\partial w} [(f(x_i) - y_i)]
+= \frac1{n} \sum_{i=1}^n 2(w x_i - y_i) x_i
+$$
+where the last equality follows because $\frac{\partial}{\partial w} wx_i = x_i$.
+
+Setting the derivative to $0$ and solving for $w$,
+we get $\frac2{n} \sum_{i=1}^n w x_i^2 = \frac2{n} \sum_{i=1}^n y_i x_i$ and so
+$$
+w = \frac{\sum_{i=1}^n y_i}{\sum_{i=1}^n x_i^2}.
+$$
+
+## Multivariate Linear Regression
+
+Recall our setting where we observe $n$ training observations $(\mathbf{x_1}, y_1), \ldots, (\mathbf{x_n}, y_n)$.
+In general, the data we are interested in is high-dimensional so $\mathbf{x}_i \in \mathbb{R}^d$ rather than the prior setting where $x_i \in \mathbb{R}$.
+
+### Linear Model
+
+Instead of using a single weight $w \in \mathbb{R}$, we will use $d$ weights $\mathbf{w} \in \mathbb{R}^d$.
+Then the model is given by $f(x) = \mathbf{w} \cdot \mathbf{x}$.
+
+### Mean Squared Error
+
+Since the output of $f$ is still a single real number, we do not have to change the loss function.
+
+However, we will use our linear algebra notation to write the mean squared error in a fun way.
+
+Let $\mathbf{X} \in \mathbb{R}^{n \times d}$ be the data matrix where the $i$th row is $\mathbf{x}_i^\top$.
+Similarly, let $\mathbf{y} \in \mathbf{R}^n$ be the target vector where the $i$th entry is $y_i$.
+
+Then we can write the mean squared error loss as
+$\mathcal{L}(\mathbf{w}) = \frac1{n} \| \mathbf{X w - y} \|_2^2$.
+
+### Exact Optimization
+
+Just like computing the derivative and setting it to $0$, we can compute the gradient and set it to $\mathbf{0} \in \mathbb{R}^d$.
+In mathematical notation, we will set $\nabla_\mathbf{w} \mathcal{L}(\mathbf{w}) = \mathbf{0}$ and solve for $\mathbf{w}$.
 
 ## Introduction
 
