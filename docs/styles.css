@@ -4,10 +4,6 @@
   padding: 0 1rem; /* Optional: Adjust padding for readability */
 }
 
-.container-fluid {
-  width: 100% !important; /* Ensure fluid containers are full width */
-}
-
 .navbar {
   background-color: #008080;
 }
@@ -19,17 +15,20 @@
 table, th, td {
   border: 2px solid;
   border-color: #FFFFFF;
-} 
+}
 
 table tr:first-of-type {
   color: white;
-  text-align: center;
   background-color: #008080; /* Unique color for the first row */
   font-weight: bold; /* Optional bold text */
 }
 
 tr:nth-child(even), th {
   background-color: #E5F2F2;
+}
+
+table td, table th {
+  padding-left: 10px; /* Adjust the value as needed for desired spacing */
 }
 
 h1 {

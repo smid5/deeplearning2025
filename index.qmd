@@ -75,7 +75,7 @@ Deep learning from theoretical foundations to state-of-the-art applications.
     <td>Monday 1/6</td>
     <td>Linear Regression and Mean Squared Error</td>
     <td></td>
-    <td></td>
+    <td>[Notes](notes/01_regression.html)</td>
   </tr>
   <tr>
     <td>Tuesday 1/7</td>
