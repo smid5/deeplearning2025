@@ -19,7 +19,9 @@ Deep learning from theoretical foundations to state-of-the-art applications.
   
   **Office Hours**: I will hold office hours in 75 Shannon St Room 221 from 3 to 4pm.
   
-  **Participation**: I expect you to engage in class, ask questions, and make connections. So that I can get a sense of how you're doing, please fill out [this](https://forms.gle/92hyvcHtCw4m62DWA) form once per lecture. (You will receive one point per lecture if you answer the form.)
+  **Participation**: I expect you to engage in class, ask questions, and make connections. So I can check in with you, please fill out [this](https://forms.gle/92hyvcHtCw4m62DWA) form every lecture.
+
+  **Scribed Notes**: Notes are a great resource for augmenting your in-class learning. Since I updated the material in this course, I would like to ask for your help in writing these notes. You can find the assignment [here](notes/assignment.pdf).
     
   </div>
   <div class="col" markdown="1">
@@ -28,33 +30,31 @@ Deep learning from theoretical foundations to state-of-the-art applications.
   <table style="width: 100%; border-collapse: collapse;">
   <tr>
     <td>Assignment</td>
-    <td>Work Due</td>
-    <td>Self-grade Due</td>
+    <td>Due</td>
   </tr>
   <tr>
-    <td>Problem Set 1</td>
+    <td>[Problem Set 1](psets/pset1.pdf)</td>
     <td>Friday 1/10</td>
-    <td>Monday 1/13</td>
   </tr>
   <tr>
     <td>Problem Set 2</td>
     <td>Friday 1/17</td>
-    <td>Monday 1/20</td>
   </tr>
   <tr>
     <td>Problem Set 3</td>
     <td>Friday 1/24</td>
-    <td>Monday 1/27</td>
+  </tr>
+  <tr>
+    <td>Problem Set 4</td>
+    <td>Wednesday 1/29</td>
   </tr>
   <tr>
     <td>Project Proposal</td>
-    <td>Monday 1/20</td>
-    <td></td>
+    <td>Wednesday 1/22</td>
   </tr>
   <tr>
     <td>Project</td>
     <td>Friday 1/31</td>
-    <td></td>
   </tr>
 </table>
 
