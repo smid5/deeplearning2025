@@ -24,14 +24,13 @@ Your grade in the class will be based on the number of points you earn. You will
 Since winter term classes are smaller, let's take advantage of the opportunity for more engagement. Unless you have a reasonable excuse (e.g. sickness, family emergency), I expect you to attend every lecture and discussion. Whether you are able to attend or not, I expect you to fill out the form linked from the home page to receive credit for engagement (one point per lecture day that you fill it out). Of course, if you are not able to attend in person, you should watch the recorded zoom lecture before filling out the form.
 
 **Problem Sets (52 points):**
-There will be one problem per class. In order to encourage engagement with the solutions, your problem set grade will be based both on your solutions and your self-grade of your solutions.
-
-You may work on the problems with your classmates. However, you should write your solutions and comment your code by yourself.
+There will be one problem per class. 
+You may work on the problems with your classmates. However, you should write your solutions and code by yourself.
 
 **Project (30 points):**
 In order to practice implementing the ideas we cover, you will select a topic we cover in class and implement an algorithm we discussed on a data set of your choosing. You will write a report describing your results and what you learned. You will also give a presentation showcasing your code to the class. You can complete your project as an individual or with a partner.
 
-**Curated Notes (9 points):**
+**Scribed Notes (9 points):**
 Notes are a great resource for augmenting your in-class learning. While I have notes for the prior iteration of this course, I since updated the topics in this course to account for much of the progress in deep learning in the last two years. Unfortunately, I haven't had time to create a new set of notes to reflect the current content. As such, I would like to ask for your help in writing these notes. I will provide an example for the first class (including the finished product and the source). Thereafter, students can sign up on [this sheet](https://docs.google.com/spreadsheets/d/18PWX6a_zg5qmj2239nig4vYlq4IUhKRv0tRu2yGz9_A/edit?usp=sharing) to write notes for a lecture of your choice. You will have access to my handwritten slides, a zoom recording of the lecture, and any generative model. Because I hope to use these notes in future iterations of the course (with appropriate acknowledgements, of course), I will grade the notes stringently and allow you to resubmit them once.
 
 **Late Policy:**

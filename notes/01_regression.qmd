@@ -10,7 +10,7 @@ format:
 
 When I first heard about machine *learning*, I imagined a computer that was rewarded every time it gave the right answer. Maybe there were electric carrots and sticks that no one had bothered to tell me about? While I now know as little as I did then about computer hardware, I have learned that machine learning is fundamentally a mathematical process.
 
-Luckily, we've been learning about the very mathematical ideas that make machine learning work for years! We'll review the basics of these concepts and then jump in to linear regression.
+Luckily, we've been learning about the very mathematical ideas that make machine learning work for years! We'll review the basics of these concepts and then jump in to linear regression, arguably the foundation of neural networks.
 
 ### Derivatives
 
