@@ -33,7 +33,7 @@ Deep learning from theoretical foundations to state-of-the-art applications.
     <td>Due</td>
   </tr>
   <tr>
-    <td>[Problem Set 1](psets/pset1.pdf)</td>
+    <td>[Problem Set 1](psets/pset1.pdf) ([LaTeX](psets/pset1.tex))</td>
     <td>Friday 1/10</td>
   </tr>
   <tr>
