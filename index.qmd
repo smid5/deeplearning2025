@@ -80,7 +80,7 @@ Deep learning from theoretical foundations to state-of-the-art applications.
   <tr>
     <td>Tuesday 1/7</td>
     <td>Logistic Regression and Cross Entropy Loss</td>
-    <td></td>
+    <td>[Slides](slides/02_logistic.pdf)</td>
     <td></td>
   </tr>
   <tr>

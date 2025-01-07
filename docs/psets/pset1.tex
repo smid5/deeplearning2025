@@ -68,7 +68,7 @@ I recommend:
     \item adapting the example given in the documentation at the above link.
 \end{itemize}
 
-\subsection*{Part C: Fast Solution on Real Data}
+\subsection*{Part C: scikit-learn on Real Data}
 
 On the same regression dataset from Part B, use a linear regression solver to compute the optimal coefficients.
 
@@ -83,5 +83,47 @@ I (still) recommend:
 \textbf{Sanity Check}: Ensure that both methods of solving the same regression problem result in the same coefficients.
 
 %\input{solutions/solution1_1}
+
+\newpage
+\section*{Problem 2: Logistic Regression}
+
+Consider a $d$-dimensional multivariate logistic regression problem with a single labelled pair.
+The data vector is $\mathbf{x} \in \mathbb{R}^d$ and the label is $y \in \{0,1\}$.
+
+Consider a logistic regression model with weights $\mathbf{w} \in \mathbb{R}^d$.
+Recall that the sigmoid function is given by $\sigma(z) = \frac1{1+e^{-z}}.$
+Then the model is $\sigma(\mathbf{w} \cdot \mathbf{x})$.
+The cross entropy loss is given by
+\begin{align}
+    \mathcal{L}(\mathbf{w})
+    = -  \left(y \log(\sigma(\mathbf{w} \cdot \mathbf{x})) + 
+    (1-y) \log(1-\sigma(\mathbf{w} \cdot \mathbf{x})\right)
+\end{align}
+
+\subsection*{Part A: Computing the Gradient}
+
+Show that 
+\begin{align}
+    \nabla_w\mathcal{L}(\mathbf{w}) = (\sigma(\mathbf{w} \cdot \mathbf{x})-y)\mathbf{x}.
+\end{align}
+
+\textbf{Hint:} First, show that $\frac{\partial}{\partial z} \sigma(z) = \sigma(z) (1- \sigma(z))$. Next, apply the chain rule.
+
+\subsection*{Part B: Exact Solution?}
+
+Why can't we (easily) compute the exact solution in closed form?
+
+\subsection*{Part C: scikit-learn on Real Data}
+
+Load a real classification dataset and compute the optimal coefficients for logistic regression.
+
+I (still) recommend:
+\begin{itemize}
+    \item coding in a Colab notebook,
+    \item using the scikit-learn \href{https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html}{logistic regression solver},
+    \item adapting the example given in the documentation at the above link.
+\end{itemize}
+
+%\input{solutions/solution1_2}
 
 \end{document}
