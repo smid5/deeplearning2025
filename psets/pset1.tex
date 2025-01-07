@@ -127,4 +127,29 @@ I (still) recommend:
 
 %\input{solutions/solution1_2}
 
+\newpage
+\section*{Problem 3: Neural Networks}
+
+In this problem, we will gain familiarity building and training neural networks in PyTorch.
+Please use the \href{https://colab.research.google.com/drive/1E3aJCFD5OI076r86OElgHMOy9iW6WfYv?usp=sharing}{neural network demo} as a starting point.
+
+\paragraph{Hint:} I suggest making modular changes to the demo. That is, implement the changes for one part and make sure everything still runs before moving on.
+
+\subsection*{Part A: Different Data}
+
+In the demo, we used the MNIST dataset. Load a \texttt{torchvision} dataset of your choice from \href{https://pytorch.org/vision/main/datasets.html}{this list}.
+
+\subsection*{Part B: Different Architecture}
+
+In the demo, we used a single layer neural network with no activation. Modify the \texttt{Network} class to add two new layers with ReLU activations between them.
+
+\subsection*{Part C: Evaluation During Training}
+
+We only evaluated our model on the data that we used to train it. But then how do we know if it is overfitting to the training data or actually learning?
+Load a testing set and plot the loss on the training data and on the testing data by epoch.
+
+How does the training loss compare to the test loss?
+
+%\input{solutions/solution1_3}
+
 \end{document}
