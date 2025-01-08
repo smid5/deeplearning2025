@@ -112,13 +112,13 @@ Deep learning from theoretical foundations to state-of-the-art applications.
   </tr>
   <tr>
     <td>Wednesday 1/15</td>
-    <td>Large Language Models</td>
+    <td>Sparse Autoencoders and Low Rank Approximation</td>
     <td></td>
     <td></td>
   </tr>
   <tr>
     <td>Thursday 1/16</td>
-    <td>Finetuning</td>
+    <td>Watermarking</td>
     <td></td>
     <td></td>
   </tr>
@@ -154,7 +154,7 @@ Deep learning from theoretical foundations to state-of-the-art applications.
   </tr>
   <tr>
     <td>Tuesday 1/28</td>
-    <td>Watermarking</td>
+    <td>Implicit Regularization</td>
     <td></td>
     <td></td>
   </tr>
