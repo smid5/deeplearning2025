@@ -92,7 +92,7 @@ Deep learning from theoretical foundations to state-of-the-art applications.
   <tr>
     <td>Thursday 1/9</td>
     <td>Back-propagation and Optimization</td>
-    <td></td>
+    <td>[Slides](slides/04_optimization.pdf)</td>
     <td>[Notes](https://chinmayhegde.github.io/dl-notes/notes/lecture03/)</td>
   </tr>
   <tr class="section-header">
