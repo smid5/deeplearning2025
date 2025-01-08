@@ -1,0 +1,91 @@
+---
+title: "**Logistic Regression and Cross Entropy Loss**"
+format:
+  html:
+    toc: true
+    math: true
+---
+
+## Supervised Binary Classification
+
+At times, we will build models with data whose output values are discrete rather than Linear. For these cases, 
+it is not appropriate to use Linear Regression. Instead, these models will use an approach called Supervised 
+Binary Classification. For these such models, imagine a dataset represented as:
+
+$\mathcal{D} = \{(x^i, y^i)\}_{i=1}^n, \; x^i \in \mathbb{R}^d, \; y^i \in \{0, 1\}$
+
+Our output value y, is represented as a binary value, either 1 for 'True' or 0 for 'False'.
+
+Our end goal for this method is for our Model's predicted output $F(x) = \text{Output}$ to equal the predicted
+probability of a possitive class (binary value 1). This allows us to later optimize the model by using optimizers which
+reward correct and confident results, while indicating a high level of loss for confident and incorrect results.
+
+
+
+### Sigmoid Function
+
+In the context of logistic regression, the sigmoid function is a mathematical function used to map real-valued inputs 
+into a probability range between 0 and 1. It is defined as:
+
+$\sigma(z) = \frac{1}{1 + e^{-z}}$
+
+The sigmoid function ensures the output of logistic regression is bounded between 0 and 1, making it suitable for 
+probabilistic interpretation.
+
+### Cross Entropy Loss
+
+In logistic regression, the loss is typically calculated using the log loss, also known as the binary cross-entropy 
+loss. This loss quantifies the difference between the predicted probabilities and the actual binary labels.
+The formula for loss is the following:
+
+$L(y, \hat{y}) = - \left[ y \cdot \log(\hat{y}) + (1 - y) \cdot \log(1 - \hat{y}) \right]$
+
+The entropy loss equation in class simplifies to:
+
+$H(y, f(x)) = -\log_2(x)i^*$
+
+Where $i*$ refers to the binary class of the datapoint which has a value of 1 (which ideally, the model will predict as
+having a high probability)
+
+Looking at the graph of this equation as a function of x, we can see how values close to 0 approach infinity while 
+values close to 1 give a much smaller loss. This allows for Gradient descent to be effective in correcting confidently wrong 
+predictions, as it will use the gradient (derivative) of the graph at that point.
+
+![Negative Log Graph](images/-logGraph.png)
+
+
+### binary encoding and entropy
+
+In these logistic deep learning models, discrete information must be given to the model by encoding categories
+using bit integer values. For example, assigning A,B,C,D to 00,01,10,11 is an example of fixed-length encoding.
+This is straightforward and works well when all labels are equally likely to occur. However, if the symbols are 
+not equally likely, this approach is inefficient because it doesn't take advantage of the differing probabilities.
+
+When the probability distribution of symbols is known, variable-length encoding becomes more efficient. The idea is to assign:
+
+-Shorter codes to more common symbols.
+-Longer codes to less common symbols.
+
+This minimizes the expected number of bits required to encode a sequence of symbols, leading to more efficient storage or communication.
+
+Below are examples of fixed length encoding vs variable-length encoding for a distribution with
+many C's, some A's, and less B and D's:
+
+![Negative Log Graph](images/balancedTree.png)
+![Negative Log Graph](images/huffman.png)
+
+Shannon's entropy formula quantifies the minimum average number of bits required to encode symbols from a probability distribution:
+
+$H(q) = -\sum_{i} p_i \log_2(p_i)$
+
+In order to find the entropy loss between two different distributions p and q:
+
+$H(p,q) = -\sum_{i} p_i \log_2(q_i)$
+
+
+## Conclusion
+Logistic regression represents a fundamental approach to binary classification problems, distinct from linear regression by its ability to handle discrete outputs through probability estimation. The sigmoid function serves as the crucial bridge, transforming linear combinations of inputs into probabilities between 0 and 1, making it ideal for binary classification tasks.
+
+Cross entropy loss plays a vital role in measuring model performance, providing a mathematically sound way to quantify the difference between predicted probabilities and actual binary labels. Its properties make it particularly effective for gradient descent optimization, as it heavily penalizes confident but incorrect predictions while rewarding accurate ones.
+
+The connection to information theory through binary encoding and entropy demonstrates the broader theoretical foundation of these concepts. Whether using fixed-length or variable-length encoding, the choice of representation impacts the efficiency of information storage and processing. Shannon's entropy formulas provide a mathematical framework for quantifying these efficiencies and measuring the divergence between probability distributions.
