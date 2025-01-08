@@ -86,14 +86,14 @@ Deep learning from theoretical foundations to state-of-the-art applications.
   <tr>
     <td>Wednesday 1/8</td>
     <td>Gradient Descent and Neural Networks</td>
-    <td></td>
-    <td></td>
+    <td>[Slides](slides/03_networks.pdf)</td>
+    <td>[Notes](https://chinmayhegde.github.io/dl-notes/notes/lecture02/)</td>
   </tr>
   <tr>
     <td>Thursday 1/9</td>
     <td>Back-propagation and Optimization</td>
     <td></td>
-    <td></td>
+    <td>[Notes](https://chinmayhegde.github.io/dl-notes/notes/lecture03/)</td>
   </tr>
   <tr class="section-header">
     <td colspan="4">Language Generation</td>
