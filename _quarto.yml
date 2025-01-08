@@ -15,7 +15,7 @@ website:
   favicon: favicon.ico
   navbar:    
     css: styles.css
-    title: "CSCI 1051 Winter 2025"
+    title: "Winter 2025"
     search: false
     left:
       - text: "Canvas"
