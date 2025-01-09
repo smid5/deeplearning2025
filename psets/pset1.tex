@@ -152,4 +152,27 @@ How does the training loss compare to the test loss?
 
 %\input{solutions/solution1_3}
 
+\newpage
+\section*{Problem 4: Optimizers}
+
+In this problem, we will compare the performance of several optimizers.
+
+\subsection*{Part A: Small Dataset}
+
+In order to test optimizers, we'll want a dataset that we can quickly train on. You can find a new dataset or subsample from the existing dataset you selected for the last assignment.
+
+\subsection*{Part B: Training Function}
+
+Write a function that takes \texttt{num\_epochs} and an optimizer class e.g., \texttt{torch.optim.SGD}.
+Your function should initialize a model (new random weights) and train it with an instance of the optimizer class.
+During training, record the \textit{test} loss for each epoch and return it from the function call.
+
+\subsection*{Part C: Optimizer Comparison}
+
+Run your function on at least three different optimizers selected from \texttt{torch.optim}.
+In order to remove the effect of the randomness in the training process, train with each optimizer at least 5 times and average the resulting test losses by epoch.
+Finally, plot the \textit{average} test loss by epoch for each optimizer you selected.
+
+%\input{solutions/solution1_4}
+
 \end{document}
