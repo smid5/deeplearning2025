@@ -6,6 +6,16 @@ format:
     math: true
 ---
 
+## Motivation
+
+In many supervised learning settings, Linear regression is not appropriate because:
+
+The output space is discrete rather than continuous (e.g., classifying emails as spam/not spam)
+We need probabilities to quantify uncertainty in our predictions
+Linear regression can produce values outside [0,1], making probability interpretation impossible
+
+Classification addresses these limitations by explicitly modeling the probability of class membership. Rather than outputting arbitrary real numbers, we want our models to output well-calibrated probabilities that can inform decision-making and risk assessment.
+
 ## Supervised Binary Classification
 
 At times, we will build models with data whose output values are discrete rather than Linear. For these cases, 
@@ -32,26 +42,52 @@ $\sigma(z) = \frac{1}{1 + e^{-z}}$
 The sigmoid function ensures the output of logistic regression is bounded between 0 and 1, making it suitable for 
 probabilistic interpretation.
 
+![Logistic Sigmoid Graph](images/logistic_sigmoid.pdf)
+
+Compared to Linear Regression, Logistic Regression Models use this sigmoid as an activation function to ensure
+output of a probability in the range [0,1].
+
+![Activation application](images/LogRegSigmoidPPT.pdf)
+
+
+## General Classification Model
+
+When dealing with k > 2 classes, we need to output a probability distribution over all possible classes. This requires:
+
+Multiple neurons: Each class gets its own weight vector $w_i$ to compute class-specific scores
+Softmax activation: Converts raw scores into proper probabilities that sum to 1
+
+For input x, the model computes:
+$z_i = w_i^T x + b_i$ for i = 1,...,k
+$f_i(x) = \frac{e^{z_i}}{\sum_{j=1}^k e^{z_j}}$
+The softmax function ensures:
+
+All outputs are positive (due to exponential)
+Outputs sum to 1 (due to normalization)
+Preserves ordering of inputs (monotonic)
+
+Application of softmax equation:
+
+![](images/softmax.png)
+
 ### Cross Entropy Loss
 
-In logistic regression, the loss is typically calculated using the log loss, also known as the binary cross-entropy 
-loss. This loss quantifies the difference between the predicted probabilities and the actual binary labels.
-The formula for loss is the following:
+Cross entropy provides a natural way to compare the predicted probability distribution with the true distribution encoded as one-hot vectors. For a single example with true class j:
+$H(y, f(x)) = -\sum_{i=1}^k y_i \log(f_i(x)) = -\log(f_j(x))$
+This loss function has important properties:
 
-$L(y, \hat{y}) = - \left[ y \cdot \log(\hat{y}) + (1 - y) \cdot \log(1 - \hat{y}) \right]$
+Simplifies to negative log probability of true class (since y is one-hot)
+Goes to infinity as predicted probability approaches 0, strongly penalizing confident wrong predictions
+Matches information theoretic notion of coding length
+Proper scoring rule (minimized by true probabilities)
 
-The entropy loss equation in class simplifies to:
+![Negative Log graph](images/NegLog.pdf)
 
-$H(y, f(x)) = -\log_2(x)i^*$
+The negative log function's shape explains these properties:
 
-Where $i*$ refers to the binary class of the datapoint which has a value of 1 (which ideally, the model will predict as
-having a high probability)
-
-Looking at the graph of this equation as a function of x, we can see how values close to 0 approach infinity while 
-values close to 1 give a much smaller loss. This allows for Gradient descent to be effective in correcting confidently wrong 
-predictions, as it will use the gradient (derivative) of the graph at that point.
-
-![Negative Log Graph](images/-logGraph.png)
+Steep slope near 0 → large gradients for wrong predictions
+Shallow slope near 1 → small gradients for correct predictions
+Asymptote at 0 → infinite loss for completely wrong predictions
 
 
 ### binary encoding and entropy
@@ -71,8 +107,8 @@ This minimizes the expected number of bits required to encode a sequence of symb
 Below are examples of fixed length encoding vs variable-length encoding for a distribution with
 many C's, some A's, and less B and D's:
 
-![Negative Log Graph](images/balancedTree.png)
-![Negative Log Graph](images/huffman.png)
+![](images/balancedTree.png)
+![](images/huffman.png)
 
 Shannon's entropy formula quantifies the minimum average number of bits required to encode symbols from a probability distribution:
 
@@ -84,7 +120,12 @@ $H(p,q) = -\sum_{i} p_i \log_2(q_i)$
 
 
 ## Conclusion
-Logistic regression represents a fundamental approach to binary classification problems, distinct from linear regression by its ability to handle discrete outputs through probability estimation. The sigmoid function serves as the crucial bridge, transforming linear combinations of inputs into probabilities between 0 and 1, making it ideal for binary classification tasks.
+We now have model of outputting predictions for classification and a loss.
+Logistic regression represents a fundamental approach to binary classification problems, distinct from linear regression by its ability to handle discrete outputs through probability estimation.
+
+Exact computation won't work like it did for linear regression, so we need a new strategy for this kind of problem.
+
+The sigmoid function serves as the crucial bridge, transforming linear combinations of inputs into probabilities between 0 and 1, making it ideal for binary classification tasks.
 
 Cross entropy loss plays a vital role in measuring model performance, providing a mathematically sound way to quantify the difference between predicted probabilities and actual binary labels. Its properties make it particularly effective for gradient descent optimization, as it heavily penalizes confident but incorrect predictions while rewarding accurate ones.
 
