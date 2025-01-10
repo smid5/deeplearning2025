@@ -11,8 +11,8 @@ format:
 In many supervised learning settings, Linear regression is not appropriate because:
 
 The output space is discrete rather than continuous (e.g., classifying emails as spam/not spam)
-We need probabilities to quantify uncertainty in our predictions
-Linear regression can produce values outside [0,1], making probability interpretation impossible
+We need probabilities to quantify uncertainty in our predictions.
+Linear regression can produce values outside [0,1], making probability interpretation impossible.
 
 Classification addresses these limitations by explicitly modeling the probability of class membership. Rather than outputting arbitrary real numbers, we want our models to output well-calibrated probabilities that can inform decision-making and risk assessment.
 
@@ -55,7 +55,7 @@ output of a probability in the range [0,1].
 When dealing with k > 2 classes, we need to output a probability distribution over all possible classes. This requires:
 
 Multiple neurons: Each class gets its own weight vector $w_i$ to compute class-specific scores
-Softmax activation: Converts raw scores into proper probabilities that sum to 1
+Softmax activation: Converts raw scores into proper probabilities that sum to 1.
 
 For input x, the model computes:
 $z_i = w_i^T x + b_i$ for i = 1,...,k
@@ -79,15 +79,17 @@ This loss function has important properties:
 Simplifies to negative log probability of true class (since y is one-hot)
 Goes to infinity as predicted probability approaches 0, strongly penalizing confident wrong predictions
 Matches information theoretic notion of coding length
-Proper scoring rule (minimized by true probabilities)
+Proper scoring rule (minimized by true probabilities).
 
 ![Negative Log graph](images/NegLog.pdf)
 
 The negative log function's shape explains these properties:
 
-Steep slope near 0 → large gradients for wrong predictions
-Shallow slope near 1 → small gradients for correct predictions
-Asymptote at 0 → infinite loss for completely wrong predictions
+Steep slope near 0 → large gradients for wrong predictions.
+
+Shallow slope near 1 → small gradients for correct predictions.
+
+Asymptote at 0 → infinite loss for completely wrong predictions.
 
 
 ### binary encoding and entropy

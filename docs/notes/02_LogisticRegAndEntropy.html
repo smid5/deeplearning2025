@@ -223,7 +223,7 @@ window.Quarto = {
 <section id="motivation" class="level2">
 <h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
 <p>In many supervised learning settings, Linear regression is not appropriate because:</p>
-<p>The output space is discrete rather than continuous (e.g., classifying emails as spam/not spam) We need probabilities to quantify uncertainty in our predictions Linear regression can produce values outside [0,1], making probability interpretation impossible</p>
+<p>The output space is discrete rather than continuous (e.g., classifying emails as spam/not spam) We need probabilities to quantify uncertainty in our predictions. Linear regression can produce values outside [0,1], making probability interpretation impossible.</p>
 <p>Classification addresses these limitations by explicitly modeling the probability of class membership. Rather than outputting arbitrary real numbers, we want our models to output well-calibrated probabilities that can inform decision-making and risk assessment.</p>
 </section>
 <section id="supervised-binary-classification" class="level2">
@@ -255,7 +255,7 @@ window.Quarto = {
 <section id="general-classification-model" class="level2">
 <h2 class="anchored" data-anchor-id="general-classification-model">General Classification Model</h2>
 <p>When dealing with k &gt; 2 classes, we need to output a probability distribution over all possible classes. This requires:</p>
-<p>Multiple neurons: Each class gets its own weight vector <span class="math inline">\(w_i\)</span> to compute class-specific scores Softmax activation: Converts raw scores into proper probabilities that sum to 1</p>
+<p>Multiple neurons: Each class gets its own weight vector <span class="math inline">\(w_i\)</span> to compute class-specific scores Softmax activation: Converts raw scores into proper probabilities that sum to 1.</p>
 <p>For input x, the model computes: <span class="math inline">\(z_i = w_i^T x + b_i\)</span> for i = 1,…,k <span class="math inline">\(f_i(x) = \frac{e^{z_i}}{\sum_{j=1}^k e^{z_j}}\)</span> The softmax function ensures:</p>
 <p>All outputs are positive (due to exponential) Outputs sum to 1 (due to normalization) Preserves ordering of inputs (monotonic)</p>
 <p>Application of softmax equation:</p>
@@ -263,7 +263,7 @@ window.Quarto = {
 <section id="cross-entropy-loss" class="level3">
 <h3 class="anchored" data-anchor-id="cross-entropy-loss">Cross Entropy Loss</h3>
 <p>Cross entropy provides a natural way to compare the predicted probability distribution with the true distribution encoded as one-hot vectors. For a single example with true class j: <span class="math inline">\(H(y, f(x)) = -\sum_{i=1}^k y_i \log(f_i(x)) = -\log(f_j(x))\)</span> This loss function has important properties:</p>
-<p>Simplifies to negative log probability of true class (since y is one-hot) Goes to infinity as predicted probability approaches 0, strongly penalizing confident wrong predictions Matches information theoretic notion of coding length Proper scoring rule (minimized by true probabilities)</p>
+<p>Simplifies to negative log probability of true class (since y is one-hot) Goes to infinity as predicted probability approaches 0, strongly penalizing confident wrong predictions Matches information theoretic notion of coding length Proper scoring rule (minimized by true probabilities).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><embed src="images/NegLog.pdf" class="img-fluid"></p>
@@ -271,7 +271,9 @@ window.Quarto = {
 </figure>
 </div>
 <p>The negative log function’s shape explains these properties:</p>
-<p>Steep slope near 0 → large gradients for wrong predictions Shallow slope near 1 → small gradients for correct predictions Asymptote at 0 → infinite loss for completely wrong predictions</p>
+<p>Steep slope near 0 → large gradients for wrong predictions.</p>
+<p>Shallow slope near 1 → small gradients for correct predictions.</p>
+<p>Asymptote at 0 → infinite loss for completely wrong predictions.</p>
 </section>
 <section id="binary-encoding-and-entropy" class="level3">
 <h3 class="anchored" data-anchor-id="binary-encoding-and-entropy">binary encoding and entropy</h3>
