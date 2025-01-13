@@ -107,7 +107,7 @@ Deep learning from theoretical foundations to state-of-the-art applications.
   <tr>
     <td>Tuesday 1/14</td>
     <td>Transformers and Positional Encoding</td>
-    <td></td>
+    <td>[Slides](slides/06_transformers.pdf)</td>
     <td></td>
   </tr>
   <tr>
