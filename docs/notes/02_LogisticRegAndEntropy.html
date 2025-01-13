@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CSCI 1051: Syllabus</title>
+<title>Logistic Regression and Cross Entropy Loss</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,23 +23,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./favicon.ico" rel="icon">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-ddd961a2510921635943dfbbd19534c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ddd961a2510921635943dfbbd19534c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -96,8 +96,37 @@ ul.task-list li input[type="checkbox"] {
 </script>
 
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -107,8 +136,8 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Winter 2025</span>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">CSCI 1051 Winter 2025</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -125,7 +154,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Gradescope</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./syllabus.html" aria-current="page"> 
+    <a class="nav-link" href="../syllabus.html"> 
 <span class="menu-text">Syllabus</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -150,18 +179,36 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation">Motivation</a></li>
+  <li><a href="#supervised-binary-classification" id="toc-supervised-binary-classification" class="nav-link" data-scroll-target="#supervised-binary-classification">Supervised Binary Classification</a>
+  <ul class="collapse">
+  <li><a href="#sigmoid-function" id="toc-sigmoid-function" class="nav-link" data-scroll-target="#sigmoid-function">Sigmoid Function</a></li>
+  </ul></li>
+  <li><a href="#general-classification-model" id="toc-general-classification-model" class="nav-link" data-scroll-target="#general-classification-model">General Classification Model</a>
+  <ul class="collapse">
+  <li><a href="#cross-entropy-loss" id="toc-cross-entropy-loss" class="nav-link" data-scroll-target="#cross-entropy-loss">Cross Entropy Loss</a></li>
+  <li><a href="#binary-encoding-and-entropy" id="toc-binary-encoding-and-entropy" class="nav-link" data-scroll-target="#binary-encoding-and-entropy">binary encoding and entropy</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><strong>CSCI 1051: Syllabus</strong></h1>
+<h1 class="title"><strong>Logistic Regression and Cross Entropy Loss</strong></h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta column-page-left">
 
     
   
@@ -173,40 +220,83 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Course Description:</strong> Deep learning has revolutionized our ability to solve complex problems, but its success often obscures the underlying principles that make it work. This course offers a structured approach to understanding and applying deep learning techniques, beginning with the theoretical foundations of linear and logistic regression. We will then generalize these ideas into a three-step deep learning framework (architecture, loss function, and optimizer). Applying this framework, we will explore modern generative methods like auto-regressive language models and diffusion. Because the tools we discuss are so powerful, it is important to understand their limitations. To this end, we will also cover techniques for interpreting deep learning predictions and adding safeguards to generated content.</p>
-<p><strong>Prerequisites:</strong> I will assume familiarity with calculus, linear regression, probability, and Python. In particular, I will assume you are comfortable with derivatives, the chain rule, gradients, matrix multiplication, and probability distributions.</p>
-<p><strong>Structure:</strong> We will meet on Monday, Tuesday, Wednesday, and Thursday at 75 Shannon in Room 202. The lecture is from 10am to 12pm and the discussion is from 2 to 4pm. I will hold my office hours during the last hour of the discussion. If you would like to meet outside of these times, please email me.</p>
-<p><strong>Resources</strong>: This class is loosely based on Chinmay Hegde’s phenomenal graduate Deep Learning <a href="https://chinmayhegde.github.io/dl-notes/">course</a> at NYU Tandon. For each class, I will post my handwritten slides. I would also like for you to be able to access curated notes. To this end, one of the assignments in the class is to scribe notes on a lecture of your choice.</p>
-<p><strong>Discussion</strong>: Please post all your course related questions on <a href="https://middlebury.instructure.com/courses/16004">Canvas</a>. If your question reveals your solution to a homework problem, please email me instead.</p>
-<section id="grading" class="level3">
-<h3 class="anchored" data-anchor-id="grading"><strong>Grading</strong></h3>
-<p>Your grade in the class will be based on the number of points you earn. You will receive an A if you earn 93 or more points, an A- if you earn between 90 and 92 points (inclusive), a B+ if you earn between 87 and 89 points (inclusive), etc.</p>
-<p><strong>Participation and Questions (13 points):</strong> Since winter term classes are smaller, let’s take advantage of the opportunity for more engagement. Unless you have a reasonable excuse (e.g.&nbsp;sickness, family emergency), I expect you to attend every lecture and discussion. Whether you are able to attend or not, I expect you to fill out the form linked from the home page to receive credit for engagement (one point per lecture day that you fill it out). Of course, if you are not able to attend in person, you should watch the recorded zoom lecture before filling out the form.</p>
-<p><strong>Problem Sets (52 points):</strong> There will be one problem per class. You may work on the problems with your classmates. However, you should write your solutions and code by yourself.</p>
-<p><strong>Project (30 points):</strong> In order to practice implementing the ideas we cover, you will select a topic we cover in class and implement an algorithm we discussed on a data set of your choosing. You will write a report describing your results and what you learned. You will also give a presentation showcasing your code to the class. You can complete your project as an individual or with a partner.</p>
-<p><strong>Scribed Notes (9 points):</strong> Notes are a great resource for augmenting your in-class learning. While I have notes for the prior iteration of this course, I since updated the topics in this course to account for much of the progress in deep learning in the last two years. Unfortunately, I haven’t had time to create a new set of notes to reflect the current content. As such, I would like to ask for your help in writing these notes. I will provide an example for the first class (including the finished product and the source). Thereafter, students can sign up on <a href="https://docs.google.com/spreadsheets/d/18PWX6a_zg5qmj2239nig4vYlq4IUhKRv0tRu2yGz9_A/edit?usp=sharing">this sheet</a> to write notes for a lecture of your choice. You will have access to my handwritten slides, a zoom recording of the lecture, and any generative model. Because I hope to use these notes in future iterations of the course (with appropriate acknowledgements, of course), I will grade the notes stringently and allow you to resubmit them once.</p>
-<p><strong>Late Policy:</strong> I expect all assignments to be turned in on time. If you are unable to turn in an assignment on time, you must email me before the assignment is due to request an extension.</p>
+<section id="motivation" class="level2">
+<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
+<p>In many supervised learning settings, Linear regression is not appropriate because:</p>
+<p>The output space is discrete rather than continuous (e.g., classifying emails as spam/not spam) We need probabilities to quantify uncertainty in our predictions. Linear regression can produce values outside [0,1], making probability interpretation impossible.</p>
+<p>Classification addresses these limitations by explicitly modeling the probability of class membership. Rather than outputting arbitrary real numbers, we want our models to output well-calibrated probabilities that can inform decision-making and risk assessment.</p>
 </section>
-<section id="honor-code" class="level3">
-<h3 class="anchored" data-anchor-id="honor-code"><strong>Honor Code</strong></h3>
-<p>Academic integrity is an important part of your learning experience. You are welcome to use online material and discuss problems with others but you must explicitly acknowledge the outside resources on the work you submit.</p>
-<p>If I notice that you have copied someone else’s work without proper attribution (such as code from the internet without a reference link or a solution very close to another student’s without giving credit), I will give you a warning. After the warning, I will subtract 5 points for every violation.</p>
-<p><strong>Large Language Models:</strong> LLMs (that we learn about in class!) are a powerful tool. However, while they are very good at producing human-like text, they have no inherent sense of ‘correctness’. You may use LLMs (as detailed below) but you are wholly responsible for the material you submit.</p>
-<p>You may use LLMs for:</p>
-<ul>
-<li><p>Implementing short blocks of code that you can easily check.</p></li>
-<li><p>Simple questions whose answers you can easily verify.</p></li>
-</ul>
-<p>Do not use LLMS for:</p>
-<ul>
-<li><p>Implementing extensive code or code that you don’t understand.</p></li>
-<li><p>Complicated questions (like those on the problem sets) that you would learn from answering yourself.</p></li>
-</ul>
-<p>Ultimately, the point of the assignments in this class are for you to practice the concepts. If you use an LLM in lieu of practice, then you deny yourself the chance to learn.</p>
+<section id="supervised-binary-classification" class="level2">
+<h2 class="anchored" data-anchor-id="supervised-binary-classification">Supervised Binary Classification</h2>
+<p>At times, we will build models with data whose output values are discrete rather than Linear. For these cases, it is not appropriate to use Linear Regression. Instead, these models will use an approach called Supervised Binary Classification. For these such models, imagine a dataset represented as:</p>
+<p><span class="math inline">\(\mathcal{D} = \{(x^i, y^i)\}_{i=1}^n, \; x^i \in \mathbb{R}^d, \; y^i \in \{0, 1\}\)</span></p>
+<p>Our output value y, is represented as a binary value, either 1 for ‘True’ or 0 for ‘False’.</p>
+<p>Our end goal for this method is for our Model’s predicted output <span class="math inline">\(F(x) = \text{Output}\)</span> to equal the predicted probability of a possitive class (binary value 1). This allows us to later optimize the model by using optimizers which reward correct and confident results, while indicating a high level of loss for confident and incorrect results.</p>
+<section id="sigmoid-function" class="level3">
+<h3 class="anchored" data-anchor-id="sigmoid-function">Sigmoid Function</h3>
+<p>In the context of logistic regression, the sigmoid function is a mathematical function used to map real-valued inputs into a probability range between 0 and 1. It is defined as:</p>
+<p><span class="math inline">\(\sigma(z) = \frac{1}{1 + e^{-z}}\)</span></p>
+<p>The sigmoid function ensures the output of logistic regression is bounded between 0 and 1, making it suitable for probabilistic interpretation.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><embed src="images/logistic_sigmoid.pdf" class="img-fluid"></p>
+<figcaption>Logistic Sigmoid Graph</figcaption>
+</figure>
+</div>
+<p>Compared to Linear Regression, Logistic Regression Models use this sigmoid as an activation function to ensure output of a probability in the range [0,1].</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><embed src="images/LogRegSigmoidPPT.pdf" class="img-fluid"></p>
+<figcaption>Activation application</figcaption>
+</figure>
+</div>
 </section>
-<section id="academic-accommodations" class="level3">
-<h3 class="anchored" data-anchor-id="academic-accommodations"><strong>Academic Accommodations</strong></h3>
-<p>If you have a Letter of Accommodation, please contact me as early in the term as possible. If you do not have a Letter of Accommodation and you believe you are eligible, please reach out to the ADA Coordinators at ada@middlebury.edu.</p>
+</section>
+<section id="general-classification-model" class="level2">
+<h2 class="anchored" data-anchor-id="general-classification-model">General Classification Model</h2>
+<p>When dealing with k &gt; 2 classes, we need to output a probability distribution over all possible classes. This requires:</p>
+<p>Multiple neurons: Each class gets its own weight vector <span class="math inline">\(w_i\)</span> to compute class-specific scores Softmax activation: Converts raw scores into proper probabilities that sum to 1.</p>
+<p>For input x, the model computes: <span class="math inline">\(z_i = w_i^T x + b_i\)</span> for i = 1,…,k <span class="math inline">\(f_i(x) = \frac{e^{z_i}}{\sum_{j=1}^k e^{z_j}}\)</span> The softmax function ensures:</p>
+<p>All outputs are positive (due to exponential) Outputs sum to 1 (due to normalization) Preserves ordering of inputs (monotonic)</p>
+<p>Application of softmax equation:</p>
+<p><img src="images/softmax.png" class="img-fluid"></p>
+<section id="cross-entropy-loss" class="level3">
+<h3 class="anchored" data-anchor-id="cross-entropy-loss">Cross Entropy Loss</h3>
+<p>Cross entropy provides a natural way to compare the predicted probability distribution with the true distribution encoded as one-hot vectors. For a single example with true class j: <span class="math inline">\(H(y, f(x)) = -\sum_{i=1}^k y_i \log(f_i(x)) = -\log(f_j(x))\)</span> This loss function has important properties:</p>
+<p>Simplifies to negative log probability of true class (since y is one-hot) Goes to infinity as predicted probability approaches 0, strongly penalizing confident wrong predictions Matches information theoretic notion of coding length Proper scoring rule (minimized by true probabilities).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><embed src="images/NegLog.pdf" class="img-fluid"></p>
+<figcaption>Negative Log graph</figcaption>
+</figure>
+</div>
+<p>The negative log function’s shape explains these properties:</p>
+<p>Steep slope near 0 → large gradients for wrong predictions.</p>
+<p>Shallow slope near 1 → small gradients for correct predictions.</p>
+<p>Asymptote at 0 → infinite loss for completely wrong predictions.</p>
+</section>
+<section id="binary-encoding-and-entropy" class="level3">
+<h3 class="anchored" data-anchor-id="binary-encoding-and-entropy">binary encoding and entropy</h3>
+<p>In these logistic deep learning models, discrete information must be given to the model by encoding categories using bit integer values. For example, assigning A,B,C,D to 00,01,10,11 is an example of fixed-length encoding. This is straightforward and works well when all labels are equally likely to occur. However, if the symbols are not equally likely, this approach is inefficient because it doesn’t take advantage of the differing probabilities.</p>
+<p>When the probability distribution of symbols is known, variable-length encoding becomes more efficient. The idea is to assign:</p>
+<p>-Shorter codes to more common symbols. -Longer codes to less common symbols.</p>
+<p>This minimizes the expected number of bits required to encode a sequence of symbols, leading to more efficient storage or communication.</p>
+<p>Below are examples of fixed length encoding vs variable-length encoding for a distribution with many C’s, some A’s, and less B and D’s:</p>
+<p><img src="images/balancedTree.png" class="img-fluid"> <img src="images/huffman.png" class="img-fluid"></p>
+<p>Shannon’s entropy formula quantifies the minimum average number of bits required to encode symbols from a probability distribution:</p>
+<p><span class="math inline">\(H(q) = -\sum_{i} p_i \log_2(p_i)\)</span></p>
+<p>In order to find the entropy loss between two different distributions p and q:</p>
+<p><span class="math inline">\(H(p,q) = -\sum_{i} p_i \log_2(q_i)\)</span></p>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>We now have model of outputting predictions for classification and a loss. Logistic regression represents a fundamental approach to binary classification problems, distinct from linear regression by its ability to handle discrete outputs through probability estimation.</p>
+<p>Exact computation won’t work like it did for linear regression, so we need a new strategy for this kind of problem.</p>
+<p>The sigmoid function serves as the crucial bridge, transforming linear combinations of inputs into probabilities between 0 and 1, making it ideal for binary classification tasks.</p>
+<p>Cross entropy loss plays a vital role in measuring model performance, providing a mathematically sound way to quantify the difference between predicted probabilities and actual binary labels. Its properties make it particularly effective for gradient descent optimization, as it heavily penalizes confident but incorrect predictions while rewarding accurate ones.</p>
+<p>The connection to information theory through binary encoding and entropy demonstrates the broader theoretical foundation of these concepts. Whether using fixed-length or variable-length encoding, the choice of representation impacts the efficiency of information storage and processing. Shannon’s entropy formulas provide a mathematical framework for quantifying these efficiencies and measuring the divergence between probability distributions.</p>
+
 
 
 </section>
