@@ -113,7 +113,7 @@ Deep learning from theoretical foundations to state-of-the-art applications.
   <tr>
     <td>Wednesday 1/15</td>
     <td>Low Rank Adaptation and Sparse Autoencoders</td>
-    <td></td>
+    <td>[Slides](slides/07_lora.pdf)</td>
     <td></td>
   </tr>
   <tr>
