@@ -20,14 +20,14 @@ Deep learning has revolutionized our ability to solve complex problems, but its 
 
 Your grade in the class will be based on the number of points you earn. You will receive an A if you earn 93 or more points, an A- if you earn between 90 and 92 points (inclusive), a B+ if you earn between 87 and 89 points (inclusive), etc.
 
-**Participation and Questions (13 points):**
+**Participation and Questions (12 points):**
 Since winter term classes are smaller, let's take advantage of the opportunity for more engagement. Unless you have a reasonable excuse (e.g. sickness, family emergency), I expect you to attend every lecture and discussion. Whether you are able to attend or not, I expect you to fill out the form linked from the home page to receive credit for engagement (one point per lecture day that you fill it out). Of course, if you are not able to attend in person, you should watch the recorded zoom lecture before filling out the form.
 
-**Problem Sets (52 points):**
+**Problem Sets (48 points):**
 There will be one problem per class. 
 You may work on the problems with your classmates. However, you should write your solutions and code by yourself.
 
-**Project (30 points):**
+**Project (35 points):**
 In order to practice implementing the ideas we cover, you will select a topic we cover in class and implement an algorithm we discussed on a data set of your choosing. You will write a report describing your results and what you learned. You will also give a presentation showcasing your code to the class. You can complete your project as an individual or with a partner.
 
 **Scribed Notes (9 points):**
