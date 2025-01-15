@@ -100,4 +100,37 @@ Finally, plot the test loss by epoch for the two models.
 
 %\input{solutions/solution2_3}
 
+\newpage
+\section*{Problem 4: Watermarking}
+
+In this problem, we will implement and compare two of the watermarking schemes we discussed in class.
+
+\subsection*{Part A: No Watermarking}
+
+Write a method that takes an input string \texttt{text} and auto-regressively samples \texttt{num\_tokens} from an LLM of your choice.
+
+\subsection*{Part B: Red/Green Watermarking}
+
+Write a method that samples from the red/green watermarking scheme.
+Write a corresponding method that detects whether a text input was likely watermarked with the scheme.
+
+\paragraph{Reminder:} Fix the list of red/green words \textit{once}.
+
+\subsection*{Part C: Exponential Minimum Sampling}
+
+Write a method that samples from the exponential minimum sampling scheme.
+Write a corresponding method that detects whether a text input was likely watermarked with the scheme.
+
+\paragraph{Reminder:} Hash a few of the prior tokens so that you can reproduce the same uniform vector.
+
+\subsection*{Part D: Comparison}
+
+Using the same text prompt, generate an output from each of the three generation methods you implemented above.
+For each output, check the detection costs for both of the detection methods you implemented above.
+
+Repeat the above process with two text prompts; one should be a common phrase and the other should be rare. What do you notice?
+
+%\input{solutions/solution2_4}
+
+
 \end{document}
