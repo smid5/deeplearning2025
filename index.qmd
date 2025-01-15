@@ -119,7 +119,7 @@ Deep learning from theoretical foundations to state-of-the-art applications.
   <tr>
     <td>Thursday 1/16</td>
     <td>Watermarking</td>
-    <td></td>
+    <td>[Slides](slides/08_watermarking.pdf)</td>
     <td></td>
   </tr>
   <tr class="section-header">
