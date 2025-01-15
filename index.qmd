@@ -49,11 +49,11 @@ Deep learning from theoretical foundations to state-of-the-art applications.
     <td>Wednesday 1/29</td>
   </tr>
   <tr>
-    <td>Project Proposal</td>
-    <td>Wednesday 1/22</td>
+    <td>[Project Proposal](project/proposal.pdf)</td>
+    <td>Sunday 1/26</td>
   </tr>
   <tr>
-    <td>Project</td>
+    <td>[Project](project/project.pdf)</td>
     <td>Friday 1/31</td>
   </tr>
 </table>
@@ -154,7 +154,7 @@ Deep learning from theoretical foundations to state-of-the-art applications.
   </tr>
   <tr>
     <td>Tuesday 1/28</td>
-    <td>Implicit Regularization</td>
+    <td>Project Preparation</td>
     <td></td>
     <td></td>
   </tr>
