@@ -41,7 +41,7 @@ Deep learning from theoretical foundations to state-of-the-art applications.
     <td>Friday 1/17</td>
   </tr>
   <tr>
-    <td>Problem Set 3</td>
+    <td>[Problem Set 3](psets/pset3.pdf) ([LaTeX](psets/pset3.tex))</td>
     <td>Friday 1/24</td>
   </tr>
   <tr>
