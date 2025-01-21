@@ -46,14 +46,16 @@ I recommend that use one of the datasets from the MNIST family.
 Train a small (three or so layers with activations) autoencoder to produce embeddings in two dimensions via reconstruction loss.
 I suggest writing one class for the encoder and one for the decoder.
 
-\subsection*{Part B: Plots}
+\subsection*{Part B: Clustering Plot}
 
 Take (a subset of) images in your training data, encode them with the encoder portion of the autoencoder and plot them on a scatter plot.
+
+\subsection*{Part C: Reconstruction Plot}
 
 Take a grid of points (about 10 by 10) in the range of points from the prior plot and pass them through your decoder.
 Now plot the resulting images on a grid based on their latent dimension.
 
-\subsection*{Part C: Variational Autoencoder}
+\subsection*{Extra Credit (2 points): Variational Autoencoder}
 
 Train a variational autoencoder with reconstruction loss and variational loss simultaneously.
 Remember that the encoder will reproduce two vectors that you will interpret as the mean $\bm{\mu} \in \mathbb{R}^2$ and standard deviation $\bm{\sigma} \in \mathbb{R}_+^2$ of the latent vector.
@@ -64,10 +66,7 @@ The KL divergence (aka cross entropy) loss simplifies to something like
     \sum_{i=1}^2 -\log(\sigma_i) + \sigma_i^2 + \mu_i^2.
 \end{align}
 
-\subsection*{Part D: Variational Plots}
-
-Reproduce the same plots that you created above for the variational autoencoder.
-What do you notice?
+Create the clustering and reconstruction plots for the variational autoencoder you just trained.
 
 %\input{solutions/solution3_1}
 
