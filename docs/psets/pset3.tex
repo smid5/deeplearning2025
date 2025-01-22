@@ -70,4 +70,30 @@ Create the clustering and reconstruction plots for the variational autoencoder y
 
 %\input{solutions/solution3_1}
 
+\newpage \section*{Problem 2: Diffusion}
+
+In this problem, we will train a diffusion model from scratch.
+
+\subsection*{Part A: Point Distribution}
+
+Write code to sample points from a recognizable but simple distribution in two dimensions.
+
+\subsection*{Part B: Tuning $T$ and $\alpha$}
+
+Recall $\mathbf{x}_t = \sqrt{\alpha^t} \mathbf{x}_0 + \sqrt{1- \alpha^t} \mathbf{z}$ for $\mathbf{z} \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$.
+
+Write code to plot $\mathbf{x}_0, \mathbf{x}_1, \ldots, \mathbf{x}_T$. Choose the number of steps $T$ and the multiplicative weight $\alpha$ so that the images slowly turn to noise.
+
+\subsection*{Part C: Diffusion Training}
+
+Initialize a several layer neural network (both your input and output should be in $\mathbb{R}^2$).
+Train your diffusion model to predict the corresponding $\mathbf{z}$ for a given $\mathbf{x}_t$.
+Carefully tune your learning rate so the loss consistently decreases.
+
+\subsection*{Part D: Diffusion Evaluation}
+
+In your training loop (every say 10 iterations), sample $\mathbf{x}_T \sim \mathcal{N}(\mathbf{0}, \mathbf{I})$ and repeatedly diffuse to $\mathbf{x}_0$ as described in class. Plot the resulting process and ensure your model learns the distribution!
+
+%\input{solutions/solution3_2}
+
 \end{document}
