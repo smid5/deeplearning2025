@@ -98,7 +98,7 @@ In your training loop (every say 10 iterations), sample $\mathbf{x}_T \sim \math
 
 \newpage
 
-\subsection*{Problem 3: Schroedinger Bridges}
+\subsection*{Problem 3: Schr\"{o}dinger Bridges}
 
 In this problem, we will train a Schroedinger Bridge from scratch.
 
@@ -107,21 +107,23 @@ In this problem, we will train a Schroedinger Bridge from scratch.
 Create one distribution $p_{\textnormal{data}}$ that is a recognizable but simple distribution like two balls of points.
 Create another distribution $p_{\textnormal{data}}'$ that is the first distribution but shifted.
 
-\subsection*{Part B: Diffusion Pretraining}
+\subsection*{Part B: Diffusion Training}
 
 Set $T \approx 20$ and $\gamma = 2/T$.
 Using the simplified diffusion approach described in class, train a `forward' model $f$ to go from $\mathcal{N}(\mathbf{0}, \mathbf{I})$ to $p_{\textnormal{data}}$ and a `backward' model $b$ to go from $\mathcal{N}(\mathbf{0}, \mathbf{I})$ to $p_{\textnormal{data}}'$.
 
-\subsection*{Part C: Schroedinger Bridge Training}
-
-Iteratively train the models together via Schroedinger Bridge training as described in class.
-
-\subsection*{Part D: Optimal Transport Plot}
+\subsection*{Part C: Transport Plot}
 
 During training:
 \begin{itemize}
     \item Sample points $x_0 \sim p_{\textnormal{data}}$ and apply the backward model $b$ for $T$ steps. Plot the progression of the points.
     \item Sample points $y_T \sim p_{\textnormal{data}}'$ and apply the forward model $f$ for $T$ steps. Plot the progression of the points.
 \end{itemize}
+
+\subsection*{Extra Credit (2 points): Schr\"{o}dinger Bridge}
+
+Iteratively train the models together via the Schr\"{o}dinger bridge training as described in class.
+
+During training, produce the same plots as described above. What do you notice?
 
 \end{document}
