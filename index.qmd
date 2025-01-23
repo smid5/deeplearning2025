@@ -140,7 +140,7 @@ Deep learning from theoretical foundations to state-of-the-art applications.
   <tr>
     <td>Thursday 1/23</td>
     <td>Schrödinger Bridges</td>
-    <td></td>
+    <td>[Slides](slides/11_schroedinger.pdf)</td>
     <td></td>
   </tr>
   <tr class="section-header">
