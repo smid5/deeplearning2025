@@ -100,7 +100,7 @@ Deep learning from theoretical foundations to state-of-the-art applications.
   </tr>
   <tr>
     <td>Monday 1/13</td>
-    <td>Language Embeddings and Contrastive Loss</td>
+    <td>Language Embeddings and Contrastive Learning</td>
     <td>[Slides](slides/05_language.pdf)</td>
     <td></td>
   </tr>
@@ -112,7 +112,7 @@ Deep learning from theoretical foundations to state-of-the-art applications.
   </tr>
   <tr>
     <td>Wednesday 1/15</td>
-    <td>Low Rank Adaptation and Sparse Autoencoders</td>
+    <td>Low Rank Approximation</td>
     <td>[Slides](slides/07_lora.pdf)</td>
     <td></td>
   </tr>
@@ -139,7 +139,7 @@ Deep learning from theoretical foundations to state-of-the-art applications.
   </tr>
   <tr>
     <td>Thursday 1/23</td>
-    <td>Schrödinger Bridges</td>
+    <td>Schrödinger Bridges and CLIP</td>
     <td>[Slides](slides/11_schroedinger.pdf)</td>
     <td></td>
   </tr>
