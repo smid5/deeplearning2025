@@ -17,7 +17,9 @@ $$
 We used this formula to directly compute $x_0$ using $x_T$ and a predicted $z$ value, allowing us to generate new images in an efficient manner.
 
 However, we could also do diffusion in a "simpler" way!
-<!-- image of diffusion -->
+
+<center><img src="images/SimpleDiffusion.pdf" width="700"></center>
+
 Here, we compute each $x_t$ by adding a scaling of a normal distribution to $x_{t-1}$. 
 We don't express $x_t$ in terms of $x_0$, instead creating each new $x_t$ by using the previously created $x_{t-1}$. 
 This is certainly less efficient than our model from yesterday, but it's simpler and easier to understand (and it will lead to Schrödinger Bridges, which we will talk about next)!
