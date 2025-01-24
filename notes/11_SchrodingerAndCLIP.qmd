@@ -154,5 +154,3 @@ After training the model in this way, we can create new images using whatever te
 We simply represent the text prompt as an embedded vector and use it to transition from $X_T \sim \mathcal{N}(0,I)$ to $X_0$.
 We can now generate images from text prompts that we have no prior data about.
 
-<center><img src="images/regression_1d.pdf" width="700"></center>
-
