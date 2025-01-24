@@ -71,7 +71,7 @@ Here are some examples of ways that this model would be helpful:
 
 So now our motivation is: Given $x_0 \sim Pdata$, find a "close" $x_T \sim Pdata^{\prime}$!
 
-<!-- image of optimal transport-->
+<center><img src="images/OptimalTransport.pdf" width="700"></center>
 
 We want to move all the points (more exactly, the probability distribution) from $Pdata$ to $Pdata^{\prime}$ in an $\textit{optimal}$ way. 
 What does it mean to be optimal? 
@@ -81,7 +81,7 @@ We call this "optimal transport".
 The Schrödinger Bridge model attempts to find this optimal transport between $Pdata$ and $Pdata^{\prime}$. 
 How do we do this?
 
-<!-- image of schrodinger-->
+<center><img src="images/Schrodinger.pdf" width="700"></center>
 
 First, let's take a look at the backward phase (going from $x_0$ to $x_T$). 
 Instead of just adding noise with a normal distribution, we now want to have a function $b$ that steps from $x_{t-1}$ to $x_t$ for each $t$ between $1$ and $T$. 
@@ -123,6 +123,8 @@ For images, we can use a network of convolutional layers to produce a vector in 
 For text, we can use attention layers to produce a vector that represents the meaning of an entire sentence or even paragraph. 
 We can then use a linear network to transform that vector into a vector in $\mathbb{R}^d$.
 
+<center><img src="images/CLIP_embedding.pdf" width="700"></center>
+
 Now we have vector representations of both images and captions in the same dimension! 
 For any pair of (image, caption), we can calculate:
 
@@ -137,7 +139,7 @@ We've now been able to represent images and words in the $\textit{same}$ space i
 Finally, let's think about how we can create images from text prompts.
 We still use diffusion to create images, but with a slight change in the model. 
 
-<!-- image of clip-->
+<center><img src="images/CLIP.pdf" width="700"></center>
 
 Now, instead of sampling $x_0 \sim Pdata$, we sample $(x_0, text) \sim Pdata$. 
 The loss function becomes
