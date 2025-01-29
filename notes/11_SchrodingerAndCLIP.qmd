@@ -41,8 +41,8 @@ $$
 And for the evaluation phase, we have:
 $$
 \begin{array}{l}
-x_T \sim Pdata \\
-\text{for } t \text{ in } \{0,...,T-1\}:\\
+x_T \sim \mathcal{N}(0,I) \\
+\text{for } t \text{ in } \{T-1,...,0\}:\\
 \quad\quad x_t = f(x_{t+1}, t+1)
 \end{array}
 $$
